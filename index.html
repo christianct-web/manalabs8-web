@@ -1,409 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mana Labs 8 | AI Operating Systems for Business</title>
-    <meta name="description" content="Mana Labs 8 builds AI-powered operating systems that turn manual workflows into predictable revenue. Clarity. Control. Growth.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --midnight: #0B1220;
-            --cyan: #22D3EE;
-            --slate: #475569;
-            --cloud: #F8FAFC;
-            --success: #16A34A;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--cloud);
-            color: var(--midnight);
-            line-height: 1.6;
-        }
-        
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(248, 250, 252, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo img {
-            height: 40px;
-        }
-        
-        .logo-text {
-            font-family: 'Sora', sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--midnight);
-        }
-        
-        nav a {
-            color: var(--slate);
-            text-decoration: none;
-            margin-left: 32px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        nav a:hover {
-            color: var(--cyan);
-        }
-        
-        nav a.cta {
-            background: var(--midnight);
-            color: var(--cloud);
-            padding: 10px 20px;
-            border-radius: 6px;
-        }
-        
-        nav a.cta:hover {
-            background: var(--cyan);
-            color: var(--midnight);
-        }
-        
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 40px 80px;
-            background: linear-gradient(180deg, var(--cloud) 0%, #EEF2FF 100%);
-        }
-        
-        .hero-content {
-            max-width: 800px;
-        }
-        
-        .tagline {
-            color: var(--cyan);
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
-        
-        h1 {
-            font-family: 'Sora', sans-serif;
-            font-size: 56px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            color: var(--midnight);
-        }
-        
-        h1 span {
-            color: var(--cyan);
-        }
-        
-        .hero p {
-            font-size: 20px;
-            color: var(--slate);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        
-        .btn-primary {
-            background: var(--midnight);
-            color: var(--cloud);
-        }
-        
-        .btn-primary:hover {
-            background: var(--cyan);
-            color: var(--midnight);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--midnight);
-            border: 2px solid var(--midnight);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--midnight);
-            color: var(--cloud);
-        }
-        
-        /* Services */
-        .services {
-            padding: 100px 40px;
-            background: white;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-header h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: 36px;
-            margin-bottom: 16px;
-        }
-        
-        .section-header p {
-            color: var(--slate);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .service-card {
-            background: var(--cloud);
-            padding: 32px;
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-        
-        .service-card h3 {
-            font-family: 'Sora', sans-serif;
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-        
-        .service-card p {
-            color: var(--slate);
-            font-size: 15px;
-        }
-        
-        /* About */
-        .about {
-            padding: 100px 40px;
-            background: var(--midnight);
-            color: var(--cloud);
-        }
-        
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .about h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: 36px;
-            margin-bottom: 24px;
-        }
-        
-        .about p {
-            font-size: 18px;
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-        
-        /* Contact */
-        .contact {
-            padding: 100px 40px;
-            background: var(--cloud);
-        }
-        
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .contact h2 {
-            font-family: 'Sora', sans-serif;
-            font-size: 36px;
-            margin-bottom: 16px;
-        }
-        
-        .contact p {
-            color: var(--slate);
-            margin-bottom: 32px;
-        }
-        
-        .contact-email {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--cyan);
-            text-decoration: none;
-        }
-        
-        .contact-email:hover {
-            text-decoration: underline;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 40px;
-            text-align: center;
-            color: var(--slate);
-            font-size: 14px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            header {
-                padding: 16px 20px;
-            }
-            
-            nav {
-                display: none;
-            }
-            
-            h1 {
-                font-size: 36px;
-            }
-            
-            .hero {
-                padding: 100px 20px 60px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .services, .about, .contact {
-                padding: 60px 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mana Labs 8 | AI Operating Systems for Business</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #0B1220;
+      --bg: #F8FAFC;
+      --text: #1E293B;
+      --accent: #22D3EE;
+      --radius: 12px;
+      --max-w: 1100px;
+    }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+    nav .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+    nav .cta-btn { background: var(--primary); color: #fff; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; font-weight: 600; transition: opacity .2s; }
+    nav .cta-btn:hover { opacity: .85; }
+
+    /* HERO */
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 32px; opacity: .8; }
+    .hero .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero .btn-primary { background: var(--primary); color: #fff; padding: 14px 36px; border-radius: var(--radius); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+    .hero .btn-secondary { border: 2px solid var(--primary); color: var(--primary); padding: 14px 36px; border-radius: var(--radius); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+
+    /* FEATURES */
+    .features { padding: 60px 0; }
+    .features h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+    .feature-card { background: #fff; border-radius: var(--radius); padding: 32px; box-shadow: 0 2px 16px rgba(0,0,0,.06); }
+    .feature-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature-card h3 { margin-bottom: 8px; }
+
+    /* PRICING */
+    .pricing { padding: 60px 0; }
+    .pricing h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; max-width: 900px; margin: 0 auto; }
+    .price-card { background: #fff; border-radius: var(--radius); padding: 40px 32px; text-align: center; box-shadow: 0 2px 16px rgba(0,0,0,.06); position: relative; }
+    .price-card.featured { border: 3px solid var(--primary); }
+    .price-card .price { font-size: 3rem; font-weight: 800; color: var(--primary); }
+    .price-card .period { opacity: .6; }
+    .price-card ul { list-style: none; margin: 24px 0; text-align: left; }
+    .price-card li { padding: 8px 0; border-bottom: 1px solid #eee; }
+    .price-card li::before { content: "✓ "; color: var(--primary); font-weight: 700; }
+    .price-card a { display: block; background: var(--primary); color: #fff; padding: 14px; border-radius: var(--radius); text-decoration: none; font-weight: 700; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 60px 0; }
+    .testimonials h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .testimonial { background: #fff; border-radius: var(--radius); padding: 32px; box-shadow: 0 2px 16px rgba(0,0,0,.06); }
+    .testimonial .stars { color: #f59e0b; margin-bottom: 12px; }
+    .testimonial .author { margin-top: 16px; font-weight: 700; }
+
+    /* CTA */
+    .cta-section { padding: 80px 0; text-align: center; background: var(--primary); color: #fff; border-radius: var(--radius); margin: 60px auto; max-width: var(--max-w); }
+    .cta-section h2 { font-size: 2.2rem; margin-bottom: 16px; }
+    .cta-section p { margin-bottom: 32px; opacity: .9; }
+    .cta-section a { background: #fff; color: var(--primary); padding: 14px 36px; border-radius: var(--radius); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+
+    /* FOOTER */
+    footer { padding: 40px 0; text-align: center; opacity: .6; font-size: .9rem; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 48px 0 32px; }
+      .features-grid, .pricing-grid, .testimonial-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="assets/logo.svg" alt="Mana Labs 8">
-            <span class="logo-text">MANA LABS 8</span>
-        </div>
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact" class="cta">Get in Touch</a>
-        </nav>
-    </header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">MANA LABS 8</a>
+      <a href="mailto:sales@manalabs8.com" class="cta-btn">Get in Touch</a>
+    </nav>
+  </div>
 
+  <div class="container">
     <section class="hero">
-        <div class="hero-content">
-            <p class="tagline">Clarity. Control. Growth.</p>
-            <h1>Build Systems That <span>Sell</span></h1>
-            <p>We design and deploy AI operating systems that remove bottlenecks and increase revenue velocity for service businesses.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Book Free Discovery</a>
-                <a href="#services" class="btn btn-secondary">Our Services</a>
-            </div>
-        </div>
+      <h1>Build Systems That <span>Sell</span></h1>
+      <p>We design and deploy AI operating systems that remove bottlenecks and increase revenue velocity for service businesses.</p>
+      <div class="btn-group">
+        <a href="mailto:sales@manalabs8.com" class="btn-primary">Book Free Discovery</a>
+        <a href="#features" class="btn-secondary">Our Services</a>
+      </div>
     </section>
+  </div>
 
-    <section class="services" id="services">
-        <div class="section-header">
-            <h2>What We Do</h2>
-            <p>We help businesses replace manual chaos with clear, structured AI systems that perform.</p>
+  <div class="container">
+    <section class="features" id="features">
+      <h2>What We Do</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">⚡</div>
+          <h3>Workflow Automation</h3>
+          <p>Transform repetitive tasks into automated workflows that save time and reduce errors.</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Workflow Automation</h3>
-                <p>Transform repetitive tasks into automated workflows that save time and reduce errors.</p>
-            </div>
-            <div class="service-card">
-                <h3>CRM & Pipeline Systems</h3>
-                <p>Build structured sales pipelines that track leads from discovery to close.</p>
-            </div>
-            <div class="service-card">
-                <h3>Compliance & Documentation</h3>
-                <p>Automated compliance tracking and audit-ready documentation systems.</p>
-            </div>
-            <div class="service-card">
-                <h3>Proposal & Invoicing</h3>
-                <p>Streamlined proposal generation and invoice workflows with payment tracking.</p>
-            </div>
-            <div class="service-card">
-                <h3>Custom System Builds</h3>
-                <p>Tailored operational systems designed for your specific business needs.</p>
-            </div>
-            <div class="service-card">
-                <h3>Ongoing Optimization</h3>
-                <p>Monthly retainers to keep your systems running at peak efficiency.</p>
-            </div>
+        <div class="feature-card">
+          <div class="icon">📊</div>
+          <h3>CRM & Pipeline Systems</h3>
+          <p>Build structured sales pipelines that track leads from discovery to close.</p>
         </div>
+        <div class="feature-card">
+          <div class="icon">📋</div>
+          <h3>Compliance & Documentation</h3>
+          <p>Automated compliance tracking and audit-ready documentation systems.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">💰</div>
+          <h3>Proposal & Invoicing</h3>
+          <p>Streamlined proposal generation and invoice workflows with payment tracking.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔧</div>
+          <h3>Custom System Builds</h3>
+          <p>Tailored operational systems designed for your specific business needs.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🚀</div>
+          <h3>Ongoing Optimization</h3>
+          <p>Monthly retainers to keep your systems running at peak efficiency.</p>
+        </div>
+      </div>
     </section>
+  </div>
 
-    <section class="about" id="about">
-        <div class="about-content">
-            <h2>Why Mana Labs 8?</h2>
-            <p>We don't just build tools — we build operational systems that drive revenue. Our approach combines practical automation with clear strategy, ensuring every system we deploy delivers measurable business outcomes.</p>
-            <p style="margin-top: 24px;">Less admin drag. More pipeline. More collections. More control.</p>
+  <div class="container">
+    <section class="pricing" id="pricing">
+      <h2>Simple Pricing</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <div class="price">$2,500<span class="period"> one-time</span></div>
+          <ul>
+            <li>Workflow automation setup</li>
+            <li>Basic CRM configuration</li>
+            <li>3 automated workflows</li>
+            <li>30-day support</li>
+          </ul>
+          <a href="mailto:sales@manalabs8.com?subject=Starter+Package">Get Started</a>
         </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="contact-content">
-            <h2>Ready to Get Started?</h2>
-            <p>Book a free discovery call and let's discuss how we can help streamline your operations.</p>
-            <a href="mailto:sales@manalabs8.com" class="contact-email">sales@manalabs8.com</a>
+        <div class="price-card featured">
+          <h3>Growth</h3>
+          <div class="price">$5,000<span class="period"> one-time</span></div>
+          <ul>
+            <li>Everything in Starter</li>
+            <li>Advanced pipeline system</li>
+            <li>8 automated workflows</li>
+            <li>Proposal & invoicing setup</li>
+            <li>90-day support</li>
+          </ul>
+          <a href="mailto:sales@manalabs8.com?subject=Growth+Package">Get Started</a>
         </div>
+        <div class="price-card">
+          <h3>Enterprise</h3>
+          <div class="price">$1,500<span class="period"> /month</span></div>
+          <ul>
+            <li>Everything in Growth</li>
+            <li>Unlimited workflows</li>
+            <li>Custom integrations</li>
+            <li>Priority support</li>
+            <li>Monthly optimization calls</li>
+          </ul>
+          <a href="mailto:sales@manalabs8.com?subject=Enterprise+Package">Contact Us</a>
+        </div>
+      </div>
     </section>
+  </div>
 
+  <div class="container">
+    <section class="testimonials">
+      <h2>Why Mana Labs 8?</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"They didn't just build tools — they built an operational system that actually drives revenue. Our pipeline velocity increased 3x."</p>
+          <div class="author">— Service Business Owner</div>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"Less admin drag, more collections. The automation saved us 20 hours per week immediately. Worth every penny."</p>
+          <div class="author">— Operations Manager</div>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"Finally, a team that understands both tech and business. They built exactly what we needed, no bloat."</p>
+          <div class="author">— Founder</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to Get Started?</h2>
+    <p>Book a free discovery call and let's discuss how we can help streamline your operations.</p>
+    <a href="mailto:sales@manalabs8.com">Book Free Discovery</a>
+  </div>
+
+  <div class="container">
     <footer>
-        <p>&copy; 2026 Mana Labs 8. All rights reserved.</p>
-        <p style="margin-top: 8px;">Clarity. Control. Growth.</p>
+      <p>© 2026 Mana Labs 8. All rights reserved.</p>
     </footer>
+  </div>
 </body>
 </html>
