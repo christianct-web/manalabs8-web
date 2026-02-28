@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120">
+
+<defs>
+
+<!-- Strong Metallic Gold -->
+<linearGradient id="goldMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#8C6A1F"/>
+  <stop offset="40%" stop-color="#F6E27A"/>
+  <stop offset="65%" stop-color="#D4AF37"/>
+  <stop offset="100%" stop-color="#8C6A1F"/>
+</linearGradient>
+
+<!-- Vertical Icon Gold (Subtle Top → Strong Bottom) -->
+<linearGradient id="iconGoldVertical" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#F6E27A" stop-opacity="0.12"/>
+  <stop offset="45%" stop-color="#D4AF37" stop-opacity="0.35"/>
+  <stop offset="100%" stop-color="#8C6A1F" stop-opacity="0.75"/>
+</linearGradient>
+
+</defs>
+
+
+<!-- ICON -->
+<g transform="translate(20,10) scale(0.892857)">
+  <g transform="translate(0,6)">
+
+    <!-- CYAN BASE -->
+    <path id="iconShape"
+      fill="#22D3EE"
+      fill-rule="evenodd"
+      d="
+        M50 106
+        A28 28 0 1 1 50 50
+        A28 28 0 1 1 50 106
+        M50 97.5
+        A19.5 19.5 0 1 0 50 58.5
+        A19.5 19.5 0 1 0 50 97.5
+
+        M50 50
+        A28 28 0 1 1 50 -6
+        A28 28 0 1 1 50 50
+        M50 41.5
+        A19.5 19.5 0 1 0 50 2.5
+        A19.5 19.5 0 1 0 50 41.5
+
+        M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z
+        M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z
+
+        M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z
+        M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z
+      "/>
+
+    <!-- GOLD OVERLAY (Stronger Bottom) -->
+    <path
+      fill="url(#iconGoldVertical)"
+      fill-rule="evenodd"
+      d="
+        M50 106
+        A28 28 0 1 1 50 50
+        A28 28 0 1 1 50 106
+        M50 97.5
+        A19.5 19.5 0 1 0 50 58.5
+        A19.5 19.5 0 1 0 50 97.5
+
+        M50 50
+        A28 28 0 1 1 50 -6
+        A28 28 0 1 1 50 50
+        M50 41.5
+        A19.5 19.5 0 1 0 50 2.5
+        A19.5 19.5 0 1 0 50 41.5
+
+        M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z
+        M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z
+
+        M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z
+        M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z
+      "/>
+
+  </g>
+</g>
+
+
+<!-- MANA -->
+<text x="160" y="70"
+      fill="#22D3EE"
+      font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+      font-size="46"
+      font-weight="700"
+      letter-spacing="-0.8">
+  MANA
+</text>
+
+
+<!-- LABS -->
+<text x="160" y="100"
+      fill="#22D3EE"
+      font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+      font-size="42"
+      font-weight="700"
+      letter-spacing="-0.6">
+  LABS
+</text>
+
+
+<!-- PREMIUM METALLIC GOLD 8 -->
+<text x="260" y="100"
+      fill="url(#goldMetal)"
+      font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+      font-size="42"
+      font-weight="700"
+      letter-spacing="-0.6">
+  8
+</text>
+
+</svg>
