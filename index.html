@@ -29,7 +29,7 @@
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(248,250,252,0.95); backdrop-filter: blur(10px); z-index: 100; }
     nav .logo { font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--midnight); text-decoration: none; display: flex; align-items: center; }
-    .logo-mark { width: 170px; }
+    .logo-mark { width: 250px; filter: drop-shadow(0 10px 20px rgba(11,18,32,0.25)); }
     .logo-mark svg { width: 100%; height: auto; }
     nav .logo span { color: var(--cyan); }
     nav .nav-links { display: flex; gap: 28px; align-items: center; font-weight: 500; }
@@ -87,6 +87,7 @@
     footer { padding: 32px 24px; text-align: center; font-size: 0.9rem; color: var(--slate); }
     @media (max-width: 640px) {
       nav { flex-direction: column; gap: 12px; }
+      .logo-mark { width: 200px; }
       .nav-links { flex-wrap: wrap; justify-content: center; }
       .hero .btn-group { flex-direction: column; }
       .cta-section { padding: 60px 16px; }
