@@ -4,122 +4,283 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mana Labs 8 | AI Operating Systems for Business</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Mana Labs 8 replaces manual chaos with structured AI systems that automate trade, payments, and operations across Trinidad & Tobago." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --primary: #4F46E5;
-      --primary-dark: #4338CA;
-      --primary-light: #6366F1;
-      --text: #1F2937;
-      --text-light: #6B7280;
-      --bg: #FFFFFF;
-      --bg-alt: #F9FAFB;
+      --midnight: #0B1220;
+      --cyan: #22D3EE;
+      --slate: #475569;
+      --cloud: #F8FAFC;
+      --success: #16A34A;
+      --danger: #EF4444;
+      --white: #FFFFFF;
     }
-    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--cloud);
+      color: var(--midnight);
+      line-height: 1.6;
+    }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-    /* NAV */
-    nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
-    nav .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
-    nav .nav-links { display: flex; gap: 32px; align-items: center; }
-    nav .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 500; transition: color .2s; }
-    nav .nav-links a:hover { color: var(--primary); }
-    nav .cta-btn { background: var(--primary); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background .2s; }
-    nav .cta-btn:hover { background: var(--primary-dark); }
-
-    /* HERO */
-    .hero { padding: 80px 0; display: flex; align-items: center; gap: 60px; }
-    .hero-content { flex: 1; }
-    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.15; margin-bottom: 24px; color: var(--text); }
-    .hero p { font-size: 1.125rem; color: var(--text-light); margin-bottom: 32px; max-width: 500px; }
-    .hero .btn-group { display: flex; gap: 16px; }
-    .hero .btn-primary { background: var(--primary); color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background .2s; }
-    .hero .btn-primary:hover { background: var(--primary-dark); }
-    .hero .btn-secondary { color: var(--text-light); padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; }
-    .hero-visual { flex: 1; background: var(--bg-alt); border-radius: 16px; min-height: 400px; display: flex; align-items: center; justify-content: center; }
-    .hero-visual .placeholder { color: var(--text-light); font-weight: 500; }
-
-    /* TRUSTED BY */
-    .trusted { padding: 40px 0; border-top: 1px solid #E5E7EB; border-bottom: 1px solid #E5E7EB; }
-    .trusted p { text-align: center; color: var(--text-light); font-weight: 600; margin-bottom: 24px; }
-    .trusted-logos { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
-    .trusted-logos span { font-size: 1.5rem; font-weight: 800; color: var(--text-light); opacity: 0.6; }
-
-    /* FEATURES */
-    .features { padding: 80px 0; background: var(--bg-alt); }
-    .features h2 { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 16px; }
-    .features .section-sub { text-align: center; color: var(--text-light); margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
-    .feature-card { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
-    .feature-card .icon { width: 48px; height: 48px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-    .feature-card .icon svg { width: 24px; height: 24px; fill: #fff; }
-    .feature-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
-    .feature-card p { color: var(--text-light); }
-
-    /* CTA */
-    .cta-section { padding: 80px 0; background: var(--primary); color: #fff; text-align: center; }
-    .cta-section h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
-    .cta-section p { margin-bottom: 32px; opacity: 0.9; max-width: 500px; margin-left: auto; margin-right: auto; }
-    .cta-section a { background: #fff; color: var(--primary); padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; }
-
-    /* FOOTER */
-    footer { padding: 40px 0; text-align: center; color: var(--text-light); font-size: .875rem; }
-
-    @media (max-width: 768px) {
-      nav { flex-direction: column; gap: 16px; }
-      nav .nav-links { display: none; }
-      .hero { flex-direction: column; text-align: center; }
-      .hero p { margin: 0 auto 32px; }
-      .hero .btn-group { justify-content: center; }
-      .trusted-logos { gap: 24px; }
+    nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(248,250,252,0.95); backdrop-filter: blur(10px); z-index: 100; }
+    nav .logo { font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--midnight); text-decoration: none; display: flex; align-items: center; }
+    .logo-mark { width: 170px; }
+    .logo-mark svg { width: 100%; height: auto; }
+    nav .logo span { color: var(--cyan); }
+    nav .nav-links { display: flex; gap: 28px; align-items: center; font-weight: 500; }
+    nav .nav-links a { color: var(--slate); text-decoration: none; transition: color .2s; }
+    nav .nav-links a:hover { color: var(--midnight); }
+    nav .cta-btn { background: var(--midnight); color: var(--white); padding: 12px 26px; border-radius: 10px; text-decoration: none; transition: all .2s; font-weight: 600; }
+    nav .cta-btn:hover { background: var(--cyan); color: var(--midnight); }
+    .hero { padding: 120px 0 90px; text-align: center; background: linear-gradient(180deg, var(--cloud) 0%, var(--white) 100%); }
+    .hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+    .hero h1 span { color: var(--cyan); }
+    .hero .tagline { font-size: 1.15rem; color: var(--slate); margin-bottom: 18px; font-weight: 600; }
+    .hero .subheadline { font-size: 1.05rem; color: var(--slate); max-width: 700px; margin: 0 auto 34px; }
+    .hero .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero .btn-primary, .hero .btn-secondary { padding: 16px 34px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: all .2s; }
+    .hero .btn-primary { background: var(--midnight); color: var(--white); }
+    .hero .btn-primary:hover { background: var(--cyan); color: var(--midnight); transform: translateY(-2px); }
+    .hero .btn-secondary { border: 2px solid var(--midnight); color: var(--midnight); background: transparent; }
+    .hero .btn-secondary:hover { background: var(--midnight); color: var(--white); }
+    .trusted { padding: 48px 0; background: var(--white); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .trusted p { text-align: center; color: var(--slate); font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+    .trusted-logos { display: flex; justify-content: center; align-items: center; gap: 44px; flex-wrap: wrap; }
+    .trusted-logos span { font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 700; color: var(--slate); opacity: 0.5; }
+    section { padding: 100px 0; }
+    .section-title { font-family: 'Sora', sans-serif; font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 18px; }
+    .section-sub { text-align: center; color: var(--slate); max-width: 640px; margin: 0 auto 48px; }
+    .problem { background: var(--midnight); color: var(--white); }
+    .problem-grid, .services-grid, .proof-grid, .pricing-grid { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .problem-card, .service-card, .proof-card, .price-card { border-radius: 16px; padding: 32px; transition: transform .3s, box-shadow .3s; }
+    .problem-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); }
+    .problem-card:hover, .service-card:hover, .proof-card:hover, .price-card:hover { transform: translateY(-6px); }
+    .problem-card h3, .service-card h3, .price-card h3 { font-family: 'Sora', sans-serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; }
+    .problem-card p, .service-card p, .price-card p { color: rgba(255,255,255,0.85); }
+    .problem-card .icon { width: 56px; height: 56px; border-radius: 12px; background: var(--cyan); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 16px; }
+    .service-card { background: var(--white); color: var(--midnight); box-shadow: 0 18px 44px rgba(11,18,32,0.08); }
+    .service-card .icon { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, var(--midnight), #1E293B); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .service-card .icon svg { width: 26px; height: 26px; fill: var(--cyan); }
+    .proof { background: var(--white); }
+    .proof-card { background: var(--cloud); text-align: center; box-shadow: 0 18px 36px rgba(11,18,32,0.08); }
+    .proof-card .metric { font-family: 'Sora', sans-serif; font-size: 3rem; font-weight: 800; color: var(--midnight); margin-bottom: 8px; }
+    .proof-card .metric span { color: var(--cyan); }
+    .proof-card .label { font-weight: 600; color: var(--slate); }
+    .pricing { background: var(--cloud); }
+    .pricing-grid { max-width: 1000px; margin: 0 auto; }
+    .price-card { background: var(--white); box-shadow: 0 20px 45px rgba(11,18,32,0.1); position: relative; border: 1px solid rgba(11,18,32,0.05); }
+    .price-card.featured { border: 3px solid var(--cyan); transform: scale(1.03); }
+    .price-card.featured::before { content: 'Most popular'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--cyan); color: var(--midnight); border-radius: 20px; padding: 5px 18px; font-size: 0.75rem; font-weight: 700; }
+    .price-card ul { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .price-card li { padding-left: 20px; position: relative; font-weight: 500; color: var(--slate); }
+    .price-card li::before { content: '•'; position: absolute; left: 0; color: var(--cyan); }
+    .cta-section { padding: 80px 24px; background: var(--midnight); color: var(--white); text-align: center; }
+    .cta-section h3 { font-family: 'Sora', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+    .cta-section p { max-width: 640px; margin: 0 auto 28px; color: rgba(255,255,255,0.75); }
+    .cta-btn-primary { background: var(--cyan); color: var(--midnight); padding: 16px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+    .cta-btn-primary:hover { background: var(--white); }
+    footer { padding: 32px 24px; text-align: center; font-size: 0.9rem; color: var(--slate); }
+    @media (max-width: 640px) {
+      nav { flex-direction: column; gap: 12px; }
+      .nav-links { flex-wrap: wrap; justify-content: center; }
+      .hero .btn-group { flex-direction: column; }
+      .cta-section { padding: 60px 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <nav>
-      <a href="#" class="logo">MANA LABS 8</a>
-      <div class="nav-links">
-        <a href="#features">Services</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a href="mailto:sales@manalabs8.com" class="cta-btn">Get Started</a>
-    </nav>
-  </div>
+  <nav class="container">
+    <a class="logo" href="#">
+      <span class="logo-mark">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120">
+          <defs>
+            <linearGradient id="goldMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8C6A1F" />
+              <stop offset="40%" stop-color="#F6E27A" />
+              <stop offset="65%" stop-color="#D4AF37" />
+              <stop offset="100%" stop-color="#8C6A1F" />
+            </linearGradient>
+            <linearGradient id="iconGoldVertical" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F6E27A" stop-opacity="0.12" />
+              <stop offset="45%" stop-color="#D4AF37" stop-opacity="0.35" />
+              <stop offset="100%" stop-color="#8C6A1F" stop-opacity="0.75" />
+            </linearGradient>
+          </defs>
+          <g transform="translate(20,10) scale(0.892857)">
+            <g transform="translate(0,6)">
+              <path id="iconShape" fill="#22D3EE" fill-rule="evenodd" d=" M50 106 A28 28 0 1 1 50 50 A28 28 0 1 1 50 106 M50 97.5 A19.5 19.5 0 1 0 50 58.5 A19.5 19.5 0 1 0 50 97.5 M50 50 A28 28 0 1 1 50 -6 A28 28 0 1 1 50 50 M50 41.5 A19.5 19.5 0 1 0 50 2.5 A19.5 19.5 0 1 0 50 41.5 M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z "/>
+              <path fill="url(#iconGoldVertical)" fill-rule="evenodd" d=" M50 106 A28 28 0 1 1 50 50 A28 28 0 1 1 50 106 M50 97.5 A19.5 19.5 0 1 0 50 58.5 A19.5 19.5 0 1 0 50 97.5 M50 50 A28 28 0 1 1 50 -6 A28 28 0 1 1 50 50 M50 41.5 A19.5 19.5 0 1 0 50 2.5 A19.5 19.5 0 1 0 50 41.5 M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z "/>
+            </g>
+          </g>
+          <text x="160" y="70" fill="#22D3EE" font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="-0.8"> MANA </text>
+          <text x="160" y="100" fill="#22D3EE" font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.6"> LABS </text>
+          <text x="260" y="100" fill="url(#goldMetal)" font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.6"> 8 </text>
+        </svg>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#proof">Proof</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact" class="cta-btn">Book a call</a>
+    </div>
+  </nav>
 
-  <div class="container">
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Build Systems That Drive Revenue</h1>
-        <p>Mana Labs 8 builds AI-powered operating systems that turn manual workflows into predictable revenue. Clarity. Control. Growth.</p>
-        <div class="btn-group">
-          <a href="mailto:sales@manalabs8.com" class="btn-primary">Get Started</a>
-          <a href="#features" class="btn-secondary">Learn More →</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <span class="placeholder">System Dashboard Preview</span>
-      </div>
-    </section>
-  </div>
-
-  <div class="trusted">
+  <section class="hero">
     <div class="container">
-      <p>TRUSTED BY FORWARD-THINKING BUSINESSES</p>
-      <div class="trusted-logos">
-        <span>ACME Corp</span>
-        <span>TechStart</span>
-        <span>GrowthCo</span>
-        <span>ScaleUp</span>
-        <span>NextGen</span>
+      <p class="tagline">AI operating systems for business teams in Trinidad & Tobago</p>
+      <h1>Replace manual chaos with structured automation that performs.</h1>
+      <p class="subheadline">Mana Labs 8 architects AI systems that orchestrate trade documents, payments, and operations so your teams move faster, more accurately, and with measurable control.</p>
+      <div class="btn-group">
+        <a class="btn-primary" href="#contact">Book a diagnostics call</a>
+        <a class="btn-secondary" href="#services">See the systems</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="container">
-    <section class="features" id="features">
-      <h2>Everything You Need</h2>
-      <p cla}
+  <section class="trusted">
+    <div class="container">
+      <p>Trusted partners across retail, logistics, energy, and finance</p>
+      <div class="trusted-logos">
+        <span>TTMAN</span>
+        <span>Energy Chamber</span>
+        <span>WiPay</span>
+        <span>TTBizLink</span>
+        <span>Powertranz</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem">
+    <div class="container">
+      <h2 class="section-title">The gaps we fix</h2>
+      <p class="section-sub">Every organization we work with wrestles with repetitive trade work, fragmented payments, and firefighting knowledge. Mana Labs 8 builds a single AI operating system that keeps both human teams and data flows accountable.</p>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="icon">⚙️</div>
+          <h3>Manual trade docs</h3>
+          <p>We automate document capture, validation, and approvals, eliminating lost paperwork and missed deadlines.</p>
+        </div>
+        <div class="problem-card">
+          <div class="icon">💳</div>
+          <h3>Payments gridlock</h3>
+          <p>AI dispatches reconciled payments, flags discrepancies, and keeps WiPay + Powertranz clean for finance teams.</p>
+        </div>
+        <div class="problem-card">
+          <div class="icon">📊</div>
+          <h3>Zero operational clarity</h3>
+          <p>We build dashboards, runbooks, and alerting so leadership always knows what automation is doing and what needs attention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title">What we deliver</h2>
+      <p class="section-sub">From diagnostics to managed automation, each engagement is structured for visibility, control, and ROI.</p>
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14m-7-7v14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Diagnostics + pilots</h3>
+          <p>Rapid discovery sprints identify bottlenecks and pilot an AI workflow (TT$25k–TT$120k depending on scope).</p>
+        </article>
+        <article class="service-card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 7h18M9 21V11.5M15 21V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Full implementation</h3>
+          <p>Automate trade, payments, and AP workflows with orchestrated integrations across TTBizLink, WiPay, ERP, and docs.</p>
+        </article>
+        <article class="service-card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Managed automation</h3>
+          <p>Ongoing monitoring, updates, and controls for TT$3k–TT$25k/month so automation keeps delivering while you focus on growth.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" class="proof">
+    <div class="container">
+      <h2 class="section-title">Proof that it works</h2>
+      <p class="section-sub">Our diagnostics, pilots, and managed runs shrink cycle time and raise compliance.</p>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <div class="metric">92<span>%</span></div>
+          <div class="label">Automation coverage in trade ops after pilot</div>
+        </div>
+        <div class="proof-card">
+          <div class="metric">30<span>hrs</span></div>
+          <div class="label">Less manual admin per week for finance leads</div>
+        </div>
+        <div class="proof-card">
+          <div class="metric">3x</div>
+          <div class="label">Faster approval to payment cycle for manufacturing accounts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple engagement tiers</h2>
+      <p class="section-sub">Pick the tier that matches your readiness, then let the Mana Labs 8 Council orchestrate the rest.</p>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3>Diagnostics Sprint</h3>
+          <p>TT$25k – 4 weeks</p>
+          <ul>
+            <li>Problem discovery + automation backlog</li>
+            <li>Prototype AI workflow + KPI proof</li>
+            <li>Roadmap + ROI brief</li>
+          </ul>
+        </article>
+        <article class="price-card featured">
+          <h3>Implementation Wave</h3>
+          <p>TT$80k–TT$200k</p>
+          <ul>
+            <li>Systems integration (TTBizLink, WiPay, ERP)</li>
+            <li>Managed data + approvals</li>
+            <li>Executive dashboards + alerts</li>
+          </ul>
+        </article>
+        <article class="price-card">
+          <h3>Managed Operations</h3>
+          <p>TT$3k–TT$25k / month</p>
+          <ul>
+            <li>24/7 automation monitoring</li>
+            <li>Change control + compliance</li>
+            <li>Continuous improvement sprints</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="cta-section">
+    <h3>Ready for an AI operating system?</h3>
+    <p>Meet with the Mana Labs 8 council, surface the automation story, and leave with a clear next move.</p>
+    <a class="cta-btn-primary" href="mailto:hello@manalabs.com?subject=Mana%20Labs%208%20Diagnostics">Book a diagnostics call</a>
+  </section>
+
+  <footer>
+    Mana Labs 8 · Automation for trade, payments, and compliance · Trinidad & Tobago
+  </footer>
+</body>
+</html>
