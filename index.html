@@ -69,6 +69,11 @@
     .service-card .icon svg { width: 26px; height: 26px; fill: var(--cyan); }
     .proof { background: var(--white); }
     .proof-card { background: var(--cloud); text-align: center; box-shadow: 0 18px 36px rgba(11,18,32,0.08); }
+    .proof-visual { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: center; margin-top: 48px; }
+    .proof-visual img { width: 100%; border-radius: 20px; box-shadow: 0 24px 56px rgba(11,18,32,0.15); }
+    .proof-visual .text { color: var(--midnight); }
+    .proof-visual .text h3 { font-size: 1.8rem; margin-bottom: 12px; }
+    .proof-visual .text p { color: var(--slate); font-size: 1rem; }
     .tracks { background: var(--white); }
     .tracks-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); max-width: 1100px; margin: 0 auto; }
     .track-card { background: var(--cloud); border-radius: 16px; padding: 28px; box-shadow: 0 14px 36px rgba(11,18,32,0.07); border: 1px solid rgba(11,18,32,0.05); }
@@ -297,6 +302,13 @@
           <div class="metric">3x</div>
           <div class="label">Faster approval to payment cycle for manufacturing accounts</div>
         </div>
+      </div>
+      <div class="proof-visual">
+        <div class="text">
+          <h3>Proof in action</h3>
+          <p>These command centers keep payments, approvals, and compliance visible so leadership can trust every automation cycle.</p>
+        </div>
+        <img src="assets/generated/proof-metrics.jpg" alt="Operations control room">
       </div>
     </div>
   </section>
