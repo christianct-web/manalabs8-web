@@ -76,9 +76,10 @@
     .proof-visual .text p { color: var(--slate); font-size: 1rem; }
     .tracks { background: var(--white); }
     .tracks-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); max-width: 1100px; margin: 0 auto; }
-    .track-card { background: var(--cloud); border-radius: 16px; padding: 28px; box-shadow: 0 14px 36px rgba(11,18,32,0.07); border: 1px solid rgba(11,18,32,0.05); }
+    .track-card { background: var(--cloud); border-radius: 16px; padding: 28px; box-shadow: 0 14px 36px rgba(11,18,32,0.07); border: 1px solid rgba(11,18,32,0.05); text-align: center; }
     .track-card h3 { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
     .track-card p { color: var(--slate); font-size: 0.95rem; }
+    .track-img { width: 120px; height: 120px; object-fit: contain; margin-bottom: 10px; filter: saturate(0.7); box-shadow: 0 12px 30px rgba(11,18,32,0.12); border-radius: 16px; background: rgba(255,255,255,0.7); }
     .icon-grid { background: var(--white); padding: 60px 0; }
     .icon-grid .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; align-items: center; }
     .icon-grid img { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(11,18,32,0.15); }
@@ -256,6 +257,7 @@
       <p class="section-sub">We skip GovForms for now and focus on the plays that move quickly: payments, commerce, marketing, industrial ops, logistics, Carnival/tourism, healthcare, and governance.</p>
       <div class="tracks-grid">
         <article class="track-card">
+          <img src="assets/generated/track-msme-payments.jpg" alt="MSME Payments" class="track-img" />
           <h3>MSME Payments & Checkout</h3>
           <p>WiPay, Powertranz, TTBizLink, and local PSP integrations plus agent-led reconciliation to help cash-heavy merchants finally accept digital payments.</p>
         </article>
