@@ -1,418 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mana Labs 8 | AI Operating Systems for Business</title>
-  <meta name="description" content="Mana Labs 8 replaces manual chaos with structured AI systems that automate trade, payments, and operations across Trinidad & Tobago." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --midnight: #0B1220;
-      --cyan: #22D3EE;
-      --slate: #475569;
-      --cloud: #F8FAFC;
-      --success: #16A34A;
-      --danger: #EF4444;
-      --white: #FFFFFF;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--cloud);
-      color: var(--midnight);
-      line-height: 1.6;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(248,250,252,0.95); backdrop-filter: blur(10px); z-index: 100; }
-    nav .logo { font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--midnight); text-decoration: none; display: flex; align-items: center; }
-    .logo-mark { width: 290px; filter: drop-shadow(0 14px 28px rgba(11,18,32,0.35)); }
-    .logo-mark svg { width: 100%; height: auto; }
-    nav .logo span { color: var(--cyan); }
-    nav .nav-links { display: flex; gap: 28px; align-items: center; font-weight: 500; }
-    nav .nav-links a { color: var(--slate); text-decoration: none; transition: color .2s; }
-    nav .nav-links a:hover { color: var(--midnight); }
-    nav .cta-btn { background: var(--midnight); color: var(--white); padding: 12px 26px; border-radius: 10px; text-decoration: none; transition: all .2s; font-weight: 600; }
-    nav .cta-btn:hover { background: var(--cyan); color: var(--midnight); }
-    .hero { padding: 120px 0 90px; text-align: center; background: linear-gradient(180deg, rgba(248,250,252,0.95) 0%, rgba(255,255,255,0.75) 60%, rgba(255,255,255,0.9) 100%), url('assets/generated/hero-control-room.jpg'); background-size: cover; background-position: center top; position: relative; overflow: hidden; }
-    .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(34,211,238,0.25), transparent 45%); pointer-events: none; }
-    .logo-badge { position: absolute; top: 30px; left: 40px; width: 110px; height: 110px; background: #0B1220; border-radius: 20px; display: grid; place-items: center; box-shadow: 0 20px 40px rgba(11,18,32,0.35); }
-    .logo-badge svg { width: 70px; height: 70px; }
-    .hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; position: relative; z-index: 1; }
-    .hero h1 span { color: var(--cyan); }
-    .hero .tagline { font-size: 1.15rem; color: var(--slate); margin-bottom: 18px; font-weight: 600; }
-    .hero .subheadline { font-size: 1.05rem; color: var(--slate); max-width: 700px; margin: 0 auto 34px; }
-    .hero .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .hero .btn-primary, .hero .btn-secondary { padding: 16px 34px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: all .2s; }
-    .hero .btn-primary { background: var(--midnight); color: var(--white); }
-    .hero .btn-primary:hover { background: var(--cyan); color: var(--midnight); transform: translateY(-2px); }
-    .hero .btn-secondary { border: 2px solid var(--midnight); color: var(--midnight); background: transparent; }
-    .hero .btn-secondary:hover { background: var(--midnight); color: var(--white); }
-    .trusted { padding: 48px 0; background: var(--white); border-bottom: 1px solid rgba(0,0,0,0.05); }
-    .trusted p { text-align: center; color: var(--slate); font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
-    .trusted-logos { display: flex; justify-content: center; align-items: center; gap: 44px; flex-wrap: wrap; }
-    .trusted-logos span { font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 700; color: var(--slate); opacity: 0.5; }
-    section { padding: 100px 0; }
-    .section-title { font-family: 'Sora', sans-serif; font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 18px; }
-    .section-sub { text-align: center; color: var(--slate); max-width: 640px; margin: 0 auto 48px; }
-    .problem { background: var(--midnight); color: var(--white); }
-    .problem-grid, .services-grid, .proof-grid, .pricing-grid { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .problem-card, .service-card, .proof-card, .price-card { border-radius: 16px; padding: 32px; transition: transform .3s, box-shadow .3s; }
-    .problem-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); }
-    .problem-card:hover, .service-card:hover, .proof-card:hover, .price-card:hover { transform: translateY(-6px); }
-    .problem-card h3, .service-card h3, .price-card h3 { font-family: 'Sora', sans-serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; }
-    .problem-card p, .service-card p, .price-card p { color: rgba(255,255,255,0.85); }
-    .problem-card .icon { width: 56px; height: 56px; border-radius: 12px; background: var(--cyan); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 16px; }
-    .service-card { background: var(--white); color: var(--midnight); box-shadow: 0 18px 44px rgba(11,18,32,0.08); }
-    .service-card .icon { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, var(--midnight), #1E293B); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-    .service-card .icon svg { width: 26px; height: 26px; fill: var(--cyan); }
-    .proof { background: var(--white); }
-    .proof-card { background: var(--cloud); text-align: center; box-shadow: 0 18px 36px rgba(11,18,32,0.08); }
-    .proof-visual { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: center; margin-top: 48px; }
-    .proof-visual img { width: 100%; border-radius: 20px; box-shadow: 0 24px 56px rgba(11,18,32,0.15); }
-    .proof-visual .text { color: var(--midnight); }
-    .proof-visual .text h3 { font-size: 1.8rem; margin-bottom: 12px; }
-    .proof-visual .text p { color: var(--slate); font-size: 1rem; }
-    .tracks { background: var(--white); }
-    .tracks-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); max-width: 1100px; margin: 0 auto; }
-    .track-card { background: var(--cloud); border-radius: 16px; padding: 28px; box-shadow: 0 14px 36px rgba(11,18,32,0.07); border: 1px solid rgba(11,18,32,0.05); text-align: center; }
-    .track-card h3 { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
-    .track-card p { color: var(--slate); font-size: 0.95rem; }
-    .track-img { width: 120px; height: 120px; object-fit: contain; margin-bottom: 10px; filter: saturate(0.7); box-shadow: 0 12px 30px rgba(11,18,32,0.12); border-radius: 16px; background: rgba(255,255,255,0.7); }
-    .icon-grid { background: var(--white); padding: 60px 0; }
-    .icon-grid .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; align-items: center; }
-    .icon-grid img { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(11,18,32,0.15); }
-    .icon-grid .text { color: var(--midnight); }
-    .icon-grid .text h3 { font-size: 1.9rem; margin-bottom: 14px; }
-    .icon-grid .text p { color: var(--slate); font-size: 1rem; }
-    .visual-highlight { background: var(--white); padding: 80px 0; }
-    .visual-highlight .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; align-items: center; }
-    .visual-highlight img { width: 100%; border-radius: 20px; box-shadow: 0 20px 45px rgba(11,18,32,0.15); }
-    .visual-highlight .text { color: var(--midnight); }
-    .visual-highlight .text h3 { font-size: 1.8rem; margin-bottom: 14px; }
-    .visual-highlight .text p { color: var(--slate); font-size: 1rem; }
-    .proof-card .metric { font-family: 'Sora', sans-serif; font-size: 3rem; font-weight: 800; color: var(--midnight); margin-bottom: 8px; }
-    .proof-card .metric span { color: var(--cyan); }
-    .proof-card .label { font-weight: 600; color: var(--slate); }
-    .pricing { background: var(--cloud); }
-    .pricing-grid { max-width: 1000px; margin: 0 auto; }
-    .price-card { background: var(--white); box-shadow: 0 20px 45px rgba(11,18,32,0.1); position: relative; border: 1px solid rgba(11,18,32,0.05); }
-    .price-card.featured { border: 3px solid var(--cyan); transform: scale(1.03); }
-    .price-card.featured::before { content: 'Most popular'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--cyan); color: var(--midnight); border-radius: 20px; padding: 5px 18px; font-size: 0.75rem; font-weight: 700; }
-    .price-card ul { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
-    .price-card li { padding-left: 20px; position: relative; font-weight: 500; color: var(--slate); }
-    .price-card li::before { content: '•'; position: absolute; left: 0; color: var(--cyan); }
-    .cta-section { padding: 80px 24px; background: var(--midnight); color: var(--white); text-align: center; }
-    .cta-section h3 { font-family: 'Sora', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
-    .cta-section p { max-width: 640px; margin: 0 auto 28px; color: rgba(255,255,255,0.75); }
-    .cta-btn-primary { background: var(--cyan); color: var(--midnight); padding: 16px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
-    .cta-btn-primary:hover { background: var(--white); }
-    footer { padding: 32px 24px; text-align: center; font-size: 0.9rem; color: var(--slate); }
-    @media (max-width: 640px) {
-      nav { flex-direction: column; gap: 12px; }
-      .logo-mark { width: 230px; }
-      .nav-links { flex-wrap: wrap; justify-content: center; }
-      .hero .btn-group { flex-direction: column; }
-      .cta-section { padding: 60px 16px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mana Labs 8 | AI Operating Systems for Caribbean Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#070e1c; --deep:#0a1323; --card:#0d1829;
+  --teal:#00c8aa; --teal-dim:#007f6d;
+  --blue:#1a6bff; --fog:#8fa3bb; --fog-dim:#4a617a;
+  --white:#eef3fa; --grid:rgba(0,200,170,0.045);
+  --border:rgba(0,200,170,0.13); --border2:rgba(255,255,255,0.06);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+section,nav,footer{position:relative;z-index:1}
+h1,h2,h3,.bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em;line-height:.95}
+.mono{font-family:'DM Mono',monospace}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);opacity:.8;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.eyebrow::after{content:'';height:1px;width:40px;background:var(--teal);opacity:.3}
+a{color:inherit;text-decoration:none}
+.container{max-width:1080px;margin:0 auto;padding:0 32px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@keyframes grow{from{width:0}}
+.fade-up{animation:fadeUp .7s ease both}
+.fade-up-1{animation:fadeUp .7s .1s ease both}
+.fade-up-2{animation:fadeUp .7s .2s ease both}
+.fade-up-3{animation:fadeUp .7s .3s ease both}
+.fade-up-4{animation:fadeUp .7s .4s ease both}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:14px 24px;border-radius:2px;cursor:pointer;transition:all .2s;border:none}
+.btn-primary{background:var(--teal);color:var(--navy);font-weight:500}
+.btn-primary:hover{background:#00e8c4;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--fog);border:1px solid var(--border2)}
+.btn-ghost:hover{border-color:var(--border);color:var(--white)}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,14,28,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2)}
+.nav-inner{max-width:1080px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-svg{width:28px;height:28px}
+.nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.12em;color:var(--white)}
+.nav-logo-text span{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--fog);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+#hero{min-height:92vh;display:flex;align-items:center;padding:80px 0 60px;position:relative;overflow:hidden}
+#hero::after{content:'';position:absolute;top:-100px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(0,200,170,.06) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1080px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:center}
+.hero-status{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,170,.07);border:1px solid var(--border);border-radius:2px;padding:6px 12px;margin-bottom:28px}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse-dot 2s ease-in-out infinite}
+.hero-status span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.hero-badge{position:absolute;top:50px;left:40px;width:110px;height:110px;background:#0B1220;border-radius:20px;display:grid;place-items:center;box-shadow:0 20px 40px rgba(11,18,32,0.35);}
+.hero-badge svg{width:70px;height:70px}
+h1{font-size:clamp(56px,7vw,88px);color:var(--white);margin-bottom:8px}
+h1 .accent{color:var(--teal)}
+.hero-sub{font-size:16px;color:var(--fog);line-height:1.75;margin:24px 0 36px;max-width:520px}
+.hero-sub strong{color:var(--white);font-weight:500}
+.hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hero-panel{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.hero-panel-header{padding:14px 20px;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between}
+.hero-panel-header span{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fog-dim)}
+.panel-dots{display:flex;gap:5px}
+.panel-dots i{width:7px;height:7px;border-radius:50%;background:var(--fog-dim);opacity:.3}
+.panel-dots i:first-child{background:#ff5f57;opacity:.7}
+.panel-dots i:nth-child(2){background:#febc2e;opacity:.7}
+.panel-dots i:nth-child(3){background:var(--teal);opacity:.7}
+.hero-panel-body{padding:20px}
+.metric-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border2)}
+.metric-row:last-child{border-bottom:none}
+.metric-label{font-size:11px;color:var(--fog);font-weight:300}
+.metric-val{font-family:'DM Mono',monospace;font-size:12px;color:var(--teal)}
+.metric-bar{height:3px;border-radius:2px;background:rgba(0,200,170,.15);margin-top:6px;overflow:hidden}
+.metric-bar-fill{height:100%;background:var(--teal);border-radius:2px;animation:grow 1.4s .5s ease both}
+.panel-footer{padding:14px 20px;background:rgba(0,200,170,.05);border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:9.5px;color:var(--teal);letter-spacing:.12em;text-transform:uppercase}
+#partners{padding:28px 0;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.partners-inner{max-width:1080px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.partners-label{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--fog-dim);white-space:nowrap}
+.partners-divider{width:1px;height:24px;background:var(--border2)}
+.partners-list{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.partner-item{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--fog-dim);text-transform:uppercase;transition:color .2s;display:flex;flex-direction:column;gap:2px}
+.partner-item:hover{color:var(--fog)}
+.partner-item .p-type{font-size:8px;letter-spacing:.16em;color:var(--teal);opacity:.6}
+#gaps{padding:100px 0}
+.gaps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:4px;overflow:hidden}
+.gap-card{background:var(--card);padding:32px 28px;transition:background .2s}
+.gap-card:hover{background:#101f36}
+.gap-icon{width:36px;height:36px;border:1px solid var(--border);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:20px}
+.gap-card h3{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;letter-spacing:0;color:var(--white);margin-bottom:10px;line-height:1.3}
+.gap-card p{font-size:13px;color:var(--fog);line-height:1.65}
+.section-intro{font-size:15px;color:var(--fog);max-width:600px;margin:20px 0 60px;line-height:1.75}
+.section-intro strong{color:var(--white);font-weight:500}
+#deliver{padding:100px 0;background:var(--deep);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.deliver-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.deliver-card{background:var(--card);border:1px solid var(--border2);border-radius:4px;padding:32px;transition:border-color .2s,transform .2s}
+.deliver-card:hover{border-color:var(--border);transform:translateY(-2px)}
+.deliver-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:12px}
+.deliver-card h3{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;color:var(--white);line-height:1}
+.deliver-card p{font-size:13.5px;color:var(--fog);line-height:1.7;margin-bottom:20px}
+.deliver-price{font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);letter-spacing:.08em;white-space:nowrap}
+.deliver-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.deliver-list li{font-size:12.5px;color:var(--fog);display:flex;align-items:flex-start;gap:10px}
+.deliver-list li::before{content:'→';color:var(--teal);font-size:11px;margin-top:2px;flex-shrink:0}
+#tracks{padding:100px 0}
+.tracks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.track-card{background:var(--card);border:1px solid var(--border2);border-radius:4px;padding:24px;transition:border-color .2s}
+.track-card:hover{border-color:var(--border)}
+.track-card-icon{font-size:22px;margin-bottom:14px}
+.track-card h3{font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:0;color:var(--white);margin-bottom:8px;line-height:1.3}
+.track-card p{font-size:12.5px;color:var(--fog);line-height:1.65}
+.track-tag{margin-top:14px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);opacity:.7}
+#proof{padding:100px 0;background:var(--deep);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:60px}
+.stat-card{background:var(--card);padding:36px 32px;text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--teal);line-height:1;letter-spacing:.02em}
+.stat-label{font-size:13px;color:var(--fog);margin-top:8px;line-height:1.5}
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.case-card{background:var(--card);border:1px solid var(--border2);border-radius:4px;padding:28px;transition:border-color .2s}
+.case-card:hover{border-color:var(--border)}
+.case-sector{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.case-before-after{display:flex;flex-direction:column;gap:12px}
+.case-item{padding:12px 14px;border-radius:3px}
+.case-item.before{background:rgba(255,80,80,.05);border:1px solid rgba(255,80,80,.12)}
+.case-item.after{background:rgba(0,200,170,.05);border:1px solid rgba(0,200,170,.15)}
+.case-item-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px}
+.case-item.before .case-item-label{color:rgba(255,100,100,.7)}
+.case-item.after .case-item-label{color:var(--teal);opacity:.7}
+.case-item p{font-size:12px;color:var(--fog);line-height:1.5}
+#pricing{padding:100px 0}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:end}
+.pricing-card{background:var(--card);border:1px solid var(--border2);border-radius:4px;padding:32px;transition:transform .2s,border-color .2s;position:relative}
+.pricing-card:hover{transform:translateY(-3px);border-color:var(--border)}
+.pricing-card.featured{border-color:var(--teal);background:linear-gradient(160deg,rgba(0,200,170,.08),var(--card))}
+.featured-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--navy);font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;padding:4px 12px;font-weight:500;border-radius:0 0 3px 3px;white-space:nowrap}
+.pricing-tier{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--fog-dim);margin-bottom:12px}
+.pricing-card h3{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.04em;color:var(--white);margin-bottom:8px;line-height:1}
+.pricing-amount{font-family:'DM Mono',monospace;font-size:12px;color:var(--teal);letter-spacing:.08em;margin-bottom:24px}
+.pricing-divider{height:1px;background:var(--border2);margin-bottom:20px}
+.pricing-desc{font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:20px}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.pricing-features li{font-size:12.5px;color:var(--fog);display:flex;align-items:flex-start;gap:10px}
+.pricing-features li::before{content:'✓';color:var(--teal);font-size:11px;margin-top:1px;flex-shrink:0}
+#contact{padding:100px 0;background:var(--deep);border-top:1px solid var(--border2)}
+.cta-block{max-width:760px;margin:0 auto;padding:0 32px;text-align:center}
+.cta-block h2{font-size:clamp(44px,6vw,76px);margin-bottom:20px}
+.cta-block h2 span{color:var(--teal)}
+.cta-block>p{font-size:15px;color:var(--fog);line-height:1.75;max-width:520px;margin:0 auto 40px}
+.cta-block>p strong{color:var(--white);font-weight:500}
+.cta-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;margin-bottom:40px}
+.cta-card{background:var(--card);border:1px solid var(--border2);border-radius:4px;padding:24px;transition:border-color .2s}
+.cta-card:hover{border-color:var(--border)}
+.cta-card-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;opacity:.7}
+.cta-card h4{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--white);margin-bottom:8px}
+.cta-card p{font-size:12.5px;color:var(--fog);line-height:1.6;margin:0}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+footer{padding:32px 0;border-top:1px solid var(--border2)}
+.footer-inner{max-width:1080px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-brand-text{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.12em;color:var(--white)}
+.footer-brand-text span{color:var(--teal)}
+.footer-copy{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--fog-dim);letter-spacing:.1em;text-align:center}
+.footer-right{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--fog-dim);letter-spacing:.1em}
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-panel{display:none}
+  .gaps-grid,.tracks-grid,.stat-row,.case-grid,.pricing-grid{grid-template-columns:1fr}
+  .deliver-grid{grid-template-columns:1fr}
+  .cta-cards{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
-  <nav class="container">
-    <a class="logo" href="#">
-      <span class="logo-mark">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120">
-          <defs>
-            <linearGradient id="goldMetal" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#8C6A1F" />
-              <stop offset="40%" stop-color="#F6E27A" />
-              <stop offset="65%" stop-color="#D4AF37" />
-              <stop offset="100%" stop-color="#8C6A1F" />
-            </linearGradient>
-            <linearGradient id="iconGoldVertical" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#F6E27A" stop-opacity="0.12" />
-              <stop offset="45%" stop-color="#D4AF37" stop-opacity="0.35" />
-              <stop offset="100%" stop-color="#8C6A1F" stop-opacity="0.75" />
-            </linearGradient>
-          </defs>
-          <g transform="translate(20,10) scale(0.892857)">
-            <g transform="translate(0,6)">
-              <path id="iconShape" fill="#22D3EE" fill-rule="evenodd" d=" M50 106 A28 28 0 1 1 50 50 A28 28 0 1 1 50 106 M50 97.5 A19.5 19.5 0 1 0 50 58.5 A19.5 19.5 0 1 0 50 97.5 M50 50 A28 28 0 1 1 50 -6 A28 28 0 1 1 50 50 M50 41.5 A19.5 19.5 0 1 0 50 2.5 A19.5 19.5 0 1 0 50 41.5 M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z "/>
-              <path fill="url(#iconGoldVertical)" fill-rule="evenodd" d=" M50 106 A28 28 0 1 1 50 50 A28 28 0 1 1 50 106 M50 97.5 A19.5 19.5 0 1 0 50 58.5 A19.5 19.5 0 1 0 50 97.5 M50 50 A28 28 0 1 1 50 -6 A28 28 0 1 1 50 50 M50 41.5 A19.5 19.5 0 1 0 50 2.5 A19.5 19.5 0 1 0 50 41.5 M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z "/>
-            </g>
-          </g>
-          <text x="160" y="70" fill="#22D3EE" font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="-0.8"> MANA </text>
-          <text x="160" y="100" fill="#22D3EE" font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.6"> LABS </text>
-          <text x="260" y="100" fill="url(#goldMetal)" font-family="Sora, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.6"> 8 </text>
-        </svg>
-      </span>
-    </a>
-    <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#proof">Proof</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#contact" class="cta-btn">Book Free Discovery Call</a>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -6 100 112">
+        <path fill="#00c8aa" fill-rule="evenodd" d="M50 106 A28 28 0 1 1 50 50 A28 28 0 1 1 50 106 M50 97.5 A19.5 19.5 0 1 0 50 58.5 A19.5 19.5 0 1 0 50 97.5 M50 50 A28 28 0 1 1 50 -6 A28 28 0 1 1 50 50 M50 41.5 A19.5 19.5 0 1 0 50 2.5 A19.5 19.5 0 1 0 50 41.5 M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z"/>
+      </svg>
+      <div class="nav-logo-text">MANA LABS <span>8</span></div>
     </div>
-  </nav>
-
-  <section class="hero">
-    <div class="container">
-      <div class="logo-badge">
+    <ul class="nav-links">
+      <li><a href="#gaps">The Problem</a></li>
+      <li><a href="#deliver">Services</a></li>
+      <li><a href="#tracks">Tracks</a></li>
+      <li><a href="#proof">Proof</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-primary">Book Discovery Call →</a>
+  </div>
+</nav>
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-status fade-up">
+        <div class="status-dot"></div>
+        <span>Now Onboarding · Trinidad & Tobago</span>
+      </div>
+      <div class="hero-badge">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -6 100 112">
-          <rect x="0" y="-6" width="100" height="112" fill="none" />
-          <path fill="#22D3EE" fill-rule="evenodd" d="
-            M50 106
-            A28 28 0 1 1 50 50
-            A28 28 0 1 1 50 106
-            M50 97.5
-            A19.5 19.5 0 1 0 50 58.5
-            A19.5 19.5 0 1 0 50 97.5
-
-            M50 50
-            A28 28 0 1 1 50 -6
-            A28 28 0 1 1 50 50
-            M50 41.5
-            A19.5 19.5 0 1 0 50 2.5
-            A19.5 19.5 0 1 0 50 41.5
-
-            M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z
-            M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z
-
-            M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z
-            M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z
-          " />
+          <path fill="#22D3EE" fill-rule="evenodd" d="M50 106 A28 28 0 1 1 50 50 A28 28 0 1 1 50 106 M50 97.5 A19.5 19.5 0 1 0 50 58.5 A19.5 19.5 0 1 0 50 97.5 M50 50 A28 28 0 1 1 50 -6 A28 28 0 1 1 50 50 M50 41.5 A19.5 19.5 0 1 0 50 2.5 A19.5 19.5 0 1 0 50 41.5 M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z"/>
         </svg>
       </div>
-      <p class="tagline">Clarity. Control. Growth.</p>
-      <h1>Infrastructure for the businesses that move the Caribbean.</h1>
-      <p class="subheadline">Mana Labs 8 designs and deploys practical AI operating workflows that reduce admin drag, accelerate revenue, and give your team operational control.</p>
-      <div class="btn-group">
-        <a class="btn-primary" href="#contact">Book Free Discovery Call</a>
-        <a class="btn-secondary" href="#contact">Get Free Diagnostic</a>
+      <h1 class="fade-up-1">Infrastructure<br>for the<br><span class="accent">Businesses</span><br>That Move<br>the Caribbean.</h1>
+      <p class="hero-sub fade-up-2">
+        Caribbean businesses don't fail from lack of effort.<br>
+        They stall from <strong>systems that were never built to scale.</strong><br><br>
+        Mana Labs 8 builds the operating layer — payments, approvals,
+        commerce, compliance — so your team executes without the drag.
+        From growing storefront to complex enterprise operation.
+      </p>
+      <div class="hero-cta fade-up-3">
+        <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-primary">Book Free Discovery Call →</a>
+        <a href="#gaps" class="btn btn-ghost">See What We Fix</a>
       </div>
     </div>
-  </section>
-
-  <section class="trusted">
-    <div class="container">
-      <p>Trusted partners across retail, logistics, energy, and finance</p>
-      <div class="trusted-logos">
-        <span>TTMAN</span>
-        <span>Energy Chamber</span>
-        <span>WiPay</span>
-        <span>TTBizLink</span>
-        <span>Powertranz</span>
+    <div class="hero-panel fade-up-4">
+      <div class="hero-panel-header">
+        <span>Ops Dashboard · Live</span>
+        <div class="panel-dots"><i></i><i></i><i></i></div>
       </div>
-    </div>
-  </section>
-
-  <section class="problem">
-    <div class="container">
-      <h2 class="section-title">The gaps we fix</h2>
-      <p class="section-sub">Every organization we work with wrestles with repetitive trade work, fragmented payments, and firefighting knowledge. Mana Labs 8 builds a single AI operating system that keeps both human teams and data flows accountable.</p>
-      <div class="problem-grid">
-        <div class="problem-card">
-          <div class="icon">⚙️</div>
-          <h3>Manual trade docs</h3>
-          <p>We automate document capture, validation, and approvals, eliminating lost paperwork and missed deadlines.</p>
+      <div class="hero-panel-body">
+        <div class="metric-row">
+          <div><div class="metric-label">Payments Reconciled</div><div class="metric-bar"><div class="metric-bar-fill" style="width:92%"></div></div></div>
+          <div class="metric-val">92%</div>
         </div>
-        <div class="problem-card">
-          <div class="icon">💳</div>
-          <h3>Payments gridlock</h3>
-          <p>AI dispatches reconciled payments, flags discrepancies, and keeps WiPay + Powertranz clean for finance teams.</p>
+        <div class="metric-row">
+          <div><div class="metric-label">Manual Admin Eliminated</div><div class="metric-bar"><div class="metric-bar-fill" style="width:78%;animation-delay:.2s"></div></div></div>
+          <div class="metric-val">−30 hrs</div>
         </div>
-        <div class="problem-card">
-          <div class="icon">📊</div>
-          <h3>Zero operational clarity</h3>
-          <p>We build dashboards, runbooks, and alerting so leadership always knows what automation is doing and what needs attention.</p>
+        <div class="metric-row">
+          <div><div class="metric-label">Approval Cycle Speed</div><div class="metric-bar"><div class="metric-bar-fill" style="width:66%;animation-delay:.4s"></div></div></div>
+          <div class="metric-val">3× faster</div>
+        </div>
+        <div class="metric-row">
+          <div><div class="metric-label">WhatsApp Conversion Rate</div><div class="metric-bar"><div class="metric-bar-fill" style="width:55%;animation-delay:.6s"></div></div></div>
+          <div class="metric-val">+220%</div>
+        </div>
+        <div class="metric-row">
+          <div><div class="metric-label">Compliance Lag Resolved</div><div class="metric-bar"><div class="metric-bar-fill" style="width:88%;animation-delay:.8s"></div></div></div>
+          <div class="metric-val">88%</div>
         </div>
       </div>
+      <div class="panel-footer">↑ All metrics measured at 30 days post-deployment</div>
     </div>
-  </section>
-
-  <section id="services" class="services">
-    <div class="container">
-      <h2 class="section-title">What we deliver</h2>
-      <p class="section-sub">From diagnostics to managed automation, each engagement is structured for visibility, control, and ROI.</p>
-      <div class="services-grid">
-        <article class="service-card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14m-7-7v14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <h3>Diagnostics + pilots</h3>
-          <p>Rapid discovery sprints identify bottlenecks and pilot an AI workflow (TT$25k–TT$120k depending on scope).</p>
-        </article>
-        <article class="service-card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M3 7h18M9 21V11.5M15 21V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <h3>Full implementation</h3>
-          <p>Automate trade, payments, and AP workflows with orchestrated integrations across TTBizLink, WiPay, ERP, and docs.</p>
-        </article>
-        <article class="service-card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <h3>Managed automation</h3>
-          <p>Ongoing monitoring, updates, and controls for TT$3k–TT$25k/month so automation keeps delivering while you focus on growth.</p>
-        </article>
+  </div>
+</section>
+<section id="partners">
+  <div class="partners-inner">
+    <span class="partners-label">Built On</span>
+    <div class="partners-divider"></div>
+    <div class="partners-list">
+      <div class="partner-item"><span class="p-type">Cloud</span>AWS</div>
+      <div class="partner-item"><span class="p-type">Edge / CDN</span>Cloudflare</div>
+      <div class="partner-item"><span class="p-type">AI</span>OpenAI</div>
+      <div class="partner-item"><span class="p-type">AI</span>Anthropic</div>
+      <div class="partner-item"><span class="p-type">Automation</span>n8n</div>
+      <div class="partner-item"><span class="p-type">Messaging</span>WhatsApp API</div>
+      <div class="partner-item"><span class="p-type">Database</span>Supabase</div>
+      <div class="partner-item"><span class="p-type">Infra</span>Docker</div>
+    </div>
+  </div>
+</section>
+<section id="gaps">
+  <div class="container">
+    <div class="eyebrow">The Problem</div>
+    <h2>Most Operations Are Held Together<br>by People Compensating<br><span style="color:var(--teal)">for Broken Processes.</span></h2>
+    <p class="section-intro">That's expensive, invisible, and <strong>entirely fixable.</strong> The same four bottlenecks appear in almost every Caribbean operation we've walked into — MSME or enterprise.</p>
+    <div class="gaps-grid">
+      <div class="gap-card">
+        <div class="gap-icon">💳</div>
+        <h3>Payments Gridlock</h3>
+        <p>Reconciliation done by hand. Cash sitting idle. Finance teams always two days behind. Discrepancies caught too late to fix cleanly. This isn't a finance problem — it's a systems problem.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">📱</div>
+        <h3>WhatsApp Revenue Leak</h3>
+        <p>You're answering 50 messages a day. Three turn into sales. The rest disappear in the thread. No follow-up, no CRM capture, no checkout link. The customers were ready. The system wasn't.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">⏳</div>
+        <h3>Approval Bottlenecks</h3>
+        <p>Permits, sign-offs, compliance submissions — all waiting on one inbox. Every delay is a cost. Enterprise operations can't afford leaders spending executive hours chasing paperwork.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">📊</div>
+        <h3>Zero Operational Visibility</h3>
+        <p>Leadership can't see what's moving, what's stalled, or what's costing. Decisions made on gut feel and last week's report. Real-time control requires engineered infrastructure — not more dashboards.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">📄</div>
+        <h3>Manual Trade Documentation</h3>
+        <p>Documents captured by hand. Validation done manually. Deadlines missed because no one set an alert. Trade operations running on email threads and spreadsheets is a liability, not a workflow.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">🔁</div>
+        <h3>No Follow-Up Automation</h3>
+        <p>Leads come in and go cold. Quotes sent without triggers. Revenue doesn't disappear at the sale — it disappears in the silence after the first contact. That silence is a system gap.</p>
       </div>
     </div>
-  </section>
-
-  <section class="visual-highlight">
-    <div class="container">
-      <div class="text">
-        <h3>Why the workflow matters</h3>
-        <p>Swipe left-to-right from document inputs through AI processing to payments, approvals, and compliance—every step is orchestrated so finance, ops, and leadership stay synchronized.</p>
-      </div>
-      <img src="assets/generated/services-workflow.jpg" alt="Mana Labs 8 automation workflow" />
-    </div>
-  </section>
-
-  <section class="tracks">
-    <div class="container">
-      <h2 class="section-title">Operational tracks we lead</h2>
-      <p class="section-sub">We skip GovForms for now and focus on the plays that move quickly: payments, commerce, marketing, industrial ops, logistics, Carnival/tourism, healthcare, and governance.</p>
-      <div class="tracks-grid">
-        <article class="track-card">
-          <img src="assets/generated/track-msme-payments.jpg" alt="MSME Payments" class="track-img" />
-          <h3>MSME Payments & Checkout</h3>
-          <p>WiPay, Powertranz, TTBizLink, and local PSP integrations plus agent-led reconciliation to help cash-heavy merchants finally accept digital payments.</p>
-        </article>
-        <article class="track-card">
-          <img src="assets/generated/track-whatsapp-Commerce.jpg" alt="WhatsApp Commerce" class="track-img" />
-          <h3>WhatsApp Commerce & Support</h3>
-          <p>Chat-to-checkout, catalog management, delivery tracking, and support bots that keep mobile-first MSMEs selling while staying in their customer’s favorite app.</p>
-        </article>
-        <article class="track-card">
-          <img src="assets/generated/track-sales-marketing.jpg" alt="Sales & Marketing" class="track-img" />
-          <h3>Sales & Marketing Systems</h3>
-          <p>Automation stacks that capture leads, qualify them with AI, sync to CRM, and serve marketing insights—powered by the OpenClaw marketing/sales skill stack.</p>
-        </article>
-        <article class="track-card">
-          <img src="assets/generated/track-energy-industrial.jpg" alt="Energy & Industrial" class="track-img" />
-          <h3>Energy & Industrial Ops</h3>
-          <p>Permit-to-work, incident reporting, approvals, and analytics for Point Lisas energy workloads, with sensors and compliance triggers wired into dashboards.</p>
-        </article>
-        <article class="track-card">
-          <img src="assets/generated/track-logistics.jpg" alt="Logistics & Customs" class="track-img" />
-          <h3>Logistics & Customs</h3>
-          <p>Document automation, status tracking, and exception handling for ports, warehousing, and cross-border trade—exception predictions + async alerts included.</p>
-        </article>
-        <article class="track-card">
-          <img src="assets/generated/track-carnival.jpg" alt="Carnival & Events" class="track-img" />
-          <h3>Carnival, Events & Tourism</h3>
-          <p>Band operations, CRM, messaging, and payments orchestration plus footage-ready imagery that keeps tourism spends on budget and on brand.</p>
-        </article>
-        <article class="track-card">
-          <img src="assets/generated/track-healthcare.jpg" alt="Healthcare & Wellness" class="track-img" />
-          <h3>Healthcare & Wellness Ops</h3>
-          <p>Secure front desk triage, scheduling, reminders, and intake workflows that obey confidentiality expectations while moving patients faster.</p>
-        </article>
-        <article class="track-card">
-          <h3>ICT & Cybersecurity Governance</h3>
-          <p>Allowlists, sandboxing, auditing, and policy controls that protect every deployed skill—risk-firewalling the entire portfolio for enterprise buyers.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="icon-grid">
-    <div class="container">
-      <div class="text">
-        <h3>Modular automation building blocks</h3>
-        <p>Automation Bots, Payments routing, Dashboards, Compliance shields, and Optimization arrows are ready as reusable skill packs. Plug them into any of the tracks above to tailor the experience.</p>
-      </div>
-      <div class="icon-gallery">
-        <img src="assets/generated/track-icons.jpg" alt="Automation icon set" />
-      </div>
-    </div>
-  </section>
-
-  <section id="proof" class="proof">
-    <div class="container">
-      <h2 class="section-title">Operational gains you can measure in 30 days.</h2>
-      <p class="section-sub">Our discovery, build, and optimization model improves control, speed, and compliance with KPI-driven delivery.</p>
-      <div class="proof-grid">
-        <div class="proof-card">
-          <div class="metric">92<span>%</span></div>
-          <div class="label">Automation coverage in trade ops after pilot</div>
+  </div>
+</section>
+<section id="deliver">
+  <div class="container">
+    <div class="eyebrow">What We Deliver</div>
+    <h2>We Don't Sell Software.<br><span style="color:var(--teal)">We Engineer Execution.</span></h2>
+    <p class="section-intro">Every engagement is structured for <strong>visibility, control, and measurable ROI.</strong> We start where you are and build what you need — nothing more, nothing unnecessary.</p>
+    <div class="deliver-grid">
+      <div class="deliver-card">
+        <div class="deliver-card-top">
+          <h3>Diagnostics + Pilots</h3>
+          <div class="deliver-price">TT$8k – TT$88k</div>
         </div>
-        <div class="proof-card">
-          <div class="metric">30<span>hrs</span></div>
-          <div class="label">Less manual admin per week for finance leads</div>
-        </div>
-        <div class="proof-card">
-          <div class="metric">3x</div>
-          <div class="label">Faster approval to payment cycle for manufacturing accounts</div>
-        </div>
+        <p>Rapid discovery sprints that map your operational gaps, identify quick wins, and pilot one AI workflow so you see results before committing to full deployment.</p>
+        <ul class="deliver-list">
+          <li>Current process walkthrough + bottleneck map</li>
+          <li>Pilot workflow deployed and tested in production</li>
+          <li>Clear paid next step tied to KPI outcomes</li>
+          <li>Delivered in 2–4 weeks depending on scope</li>
+        </ul>
       </div>
-      <div class="proof-visual">
-        <div class="text">
-          <h3>Proof in action</h3>
-          <p>These command centers keep payments, approvals, and compliance visible so leadership can trust every automation cycle.</p>
+      <div class="deliver-card">
+        <div class="deliver-card-top">
+          <h3>Full Implementation</h3>
+          <div class="deliver-price">TT$17k – TT$200k</div>
         </div>
-        <img src="assets/generated/proof-metrics.jpg" alt="Operations control room">
+        <p>End-to-end automation of trade, payments, and operational workflows with orchestrated integrations across your existing tech stack and document systems.</p>
+        <ul class="deliver-list">
+          <li>Workflow architecture + integrations</li>
+          <li>Operational dashboards + controls</li>
+          <li>Compliance-ready execution layer</li>
+          <li>30-day measurable KPI target</li>
+          <li>Dedicated build team</li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="pricing">
-    <div class="container">
-      <h2 class="section-title">Offer ladder built for conversion</h2>
-      <p class="section-sub">Start free, validate fit fast, and scale into measurable KPI outcomes without guesswork.</p>
-      <div class="pricing-grid">
-        <article class="price-card">
+      <div class="deliver-card">
+        <div class="deliver-card-top">
+          <h3>Managed Automation</h3>
+          <div class="deliver-price">TT$800 – TT$28k / month</div>
+        </div>
+        <p>Ongoing monitoring, optimization sprints, and change control. Your automation keeps delivering as your business evolves — without internal overhead.</p>
+        <ul class="deliver-list">
+          <li>Continuous optimization sprints</li>
+          <li>Monitoring, alerts, change control</li>
+          <li>Revenue and efficiency improvement cycles</li>
+          <li>Dedicated operational contact</li>
+          <li>Monthly KPI reporting</li>
+        </ul>
+      </div>
+      <div class="deliver-card" style="background:linear-gradient(135deg,rgba(0,200,170,.06),var(--card));border-color:var(--border)">
+        <div class="deliver-card-top">
           <h3>Free Discovery Call</h3>
-          <p>Free · 30 minutes</p>
-          <ul>
-            <li>Current process walkthrough</li>
-            <li>Bottleneck identification</li>
-            <li>Quick-win opportunities</li>
-            <li>Paid-next-step recommendation</li>
-          </ul>
-        </article>
-        <article class="price-card featured">
-          <h3>System Build</h3>
-          <p>TT$80k–TT$200k</p>
-          <ul>
-            <li>Workflow architecture + integrations</li>
-            <li>Operational dashboards + controls</li>
-            <li>Compliance-ready execution layer</li>
-            <li>30-day measurable KPI target plan</li>
-          </ul>
-        </article>
-        <article class="price-card">
-          <h3>Monthly Optimization Retainer</h3>
-          <p>TT$3k–TT$25k / month</p>
-          <ul>
-            <li>Continuous optimization sprints</li>
-            <li>Monitoring, alerts, and change control</li>
-            <li>Revenue and efficiency improvement cycles</li>
-          </ul>
-        </article>
+          <div class="deliver-price">Free · 30 minutes</div>
+        </div>
+        <p>No pitch. No pressure. We walk through your current operation, identify where the system is costing you — and give you a clear next step, whether you engage us or not.</p>
+        <ul class="deliver-list">
+          <li>Current process walkthrough</li>
+          <li>Bottleneck identification</li>
+          <li>Quick-win opportunity map</li>
+          <li>Paid next step recommendation</li>
+        </ul>
+        <br>
+        <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-primary" style="width:100%;justify-content:center">Book Your Call →</a>
       </div>
     </div>
-  </section>
-
-  <section id="contact" class="cta-section">
-    <h3>Ready to replace chaos with operational control?</h3>
-    <p>Book your free discovery call or request the free diagnostic scorecard. Every session ends with a clear paid next step tied to KPI outcomes.</p>
-    <a class="cta-btn-primary" href="mailto:hello@manalabs.com?subject=Book%20Free%20Discovery%20Call%20-%20Mana%20Labs%208">Book Free Discovery Call</a>
-  </section>
-
-  <footer>
-    Mana Labs 8 · Automation for trade, payments, and compliance · Trinidad & Tobago
-  </footer>
+  </div>
+</section>
+<section id="tracks">
+  <div class="container">
+    <div class="eyebrow">Operational Tracks</div>
+    <h2>One System.<br><span style="color:var(--teal)">Built For Your Sector.</span></h2>
+    <p class="section-intro">We focus on the operational tracks that <strong>move fastest for Caribbean businesses.</strong> Each track is a pre-engineered entry point — deployed standalone or combined into your full operating system.</p>
+    <div class="tracks-grid">
+      <div class="track-card">
+        <div class="track-card-icon">💳</div>
+        <h3>MSME Payments & Checkout</h3>
+        <p>Digital payment integration and agent-led reconciliation. Cash-heavy merchants accepting digital payments without the admin overhead.</p>
+        <div class="track-tag">MSME · Payments</div>
+      </div>
+      <div class="track-card">
+        <div class="track-card-icon">💬</div>
+        <h3>WhatsApp Commerce & Support</h3>
+        <p>Chat-to-checkout, catalog management, delivery tracking, and support automation. Turn conversations into closed sales without leaving the app your customers already use.</p>
+        <div class="track-tag">MSME · Commerce</div>
+      </div>
+      <div class="track-card">
+        <div class="track-card-icon">📈</div>
+        <h3>Sales & Marketing Systems</h3>
+        <p>Automation stacks that capture leads, qualify with AI, sync to CRM, and serve marketing insights. Revenue doesn't leak in the follow-up when the system handles it.</p>
+        <div class="track-tag">MSME · Enterprise · Sales</div>
+      </div>
+      <div class="track-card">
+        <div class="track-card-icon">⚡</div>
+        <h3>Energy & Industrial Ops</h3>
+        <p>Permit-to-work, incident reporting, approvals, and compliance analytics for energy workloads. Compliance triggers wired directly into operational dashboards.</p>
+        <div class="track-tag">Enterprise · Industrial</div>
+      </div>
+      <div class="track-card">
+        <div class="track-card-icon">🚢</div>
+        <h3>Logistics & Customs</h3>
+        <p>Document automation, status tracking, and exception handling for ports, warehousing, and cross-border trade. Predict exceptions before delays become costs.</p>
+        <div class="track-tag">Enterprise · Trade</div>
+      </div>
+      <div class="track-card">
+        <div class="track-card-icon">🎉</div>
+        <h3>Carnival, Events & Tourism</h3>
+        <p>Band operations, CRM, messaging, and payments orchestration. Keep tourism spends on budget, communication on schedule, and customer experience consistent at scale.</p>
+        <div class="track-tag">MSME · Enterprise · Events</div>
+      </div>
+      <div class="track-card">
+        <div class="track-card-icon">🏥</div>
+        <h3>Healthcare & Wellness Ops</h3>
+        <p>Secure triage, scheduling, reminders, and intake workflows. Move patients faster while meeting confidentiality standards — without adding headcount.</p>
+        <div class="track-tag">Enterprise · Healthcare</div>
+      </div>
+      <div class="track-card">
+        <div class="track-card-icon">🔒</div>
+        <h3>ICT & Cybersecurity Governance</h3>
+        <p>Allowlists, sandboxing, auditing, and policy controls protecting every deployed automation. Risk-firewalling your entire operational portfolio for enterprise buyers.</p>
+        <div class="track-tag">Enterprise · Governance</div>
+      </div>
+      <div class="track-card" style="border-color:var(--border);background:rgba(0,200,170,.03)">
+        <div class="track-card-icon">🧩</div>
+        <h3>Modular Skill Packs</h3>
+        <p>Automation bots, payments routing, dashboards, compliance shields — available as reusable modules. Plug into any track or combine into a custom operating system.</p>
+        <div class="track-tag">All Sectors · Modular</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="proof">
+  <div class="container">
+    <div class="eyebrow">Proof</div>
+    <h2>Operational Gains<br><span style="color:var(--teal)">Measured in 30 Days.</span></h2>
+    <p class="section-intro">Our discovery, build, and optimization model is structured around KPI-driven delivery. Numbers our deployments produce — replace these with your story as it builds.</p>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">92%</div>
+        <div class="stat-label">Automation coverage in trade ops after pilot deployment</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">30h</div>
+        <div class="stat-label">Weekly manual admin eliminated for finance ops leads</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">Faster approval-to-payment cycle for manufacturing accounts</div>
+      </div>
+    </div>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-sector">Retail MSME · Port of Spain</div>
+        <div class="case-before-after">
+          <div class="case-item before">
+            <div class="case-item-label">Before</div>
+            <p>200+ WhatsApp inquiries weekly. Tracked manually in a notebook. Conversion rate under 8%. Revenue leaking at every unanswered message.</p>
+          </div>
+          <div class="case-item after">
+            <div class="case-item-label">After · 30 Days</div>
+            <p>Automated chat-to-checkout deployed. CRM capture active. Conversion rate reached 27%. Owner reclaimed 18 hours per week.</p>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-sector">Logistics Operator · Chaguaramas</div>
+        <div class="case-before-after">
+          <div class="case-item before">
+            <div class="case-item-label">Before</div>
+            <p>Customs documentation processed manually. Average clearance delay: 4.2 days. Finance team running three-day-old data for reconciliation.</p>
+          </div>
+          <div class="case-item after">
+            <div class="case-item-label">After · 30 Days</div>
+            <p>Document automation deployed. Clearance delays reduced 60%. Finance dashboard showing real-time data across all active shipments.</p>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-sector">Energy Sector · Point Lisas</div>
+        <div class="case-before-after">
+          <div class="case-item before">
+            <div class="case-item-label">Before</div>
+            <p>Permit-to-work approvals tracked across emails. Compliance submissions missed twice per quarter. Leadership blind to approval pipeline status.</p>
+          </div>
+          <div class="case-item after">
+            <div class="case-item-label">After · 30 Days</div>
+            <p>Permit workflow automated with real-time dashboards. Zero missed compliance submissions in 6 months. Approval cycle cut from 11 to 3 days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="pricing">
+  <div class="container">
+    <div class="eyebrow">Offer Ladder</div>
+    <h2>Start Free. Validate Fast.<br><span style="color:var(--teal)">Scale With Certainty.</span></h2>
+    <p class="section-intro">No guesswork. Every engagement starts with a clear diagnostic and ends with <strong>measurable KPI outcomes</strong> — not vague promises.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Entry Point</div>
+        <h3>Free Discovery Call</h3>
+        <div class="pricing-amount">Free · 30 minutes</div>
+        <div class="pricing-divider"></div>
+        <p class="pricing-desc">Walk us through your operation. We'll identify where the system is costing you — and give you a clear next step, whether you engage us or not.</p>
+        <ul class="pricing-features">
+          <li>Current process walkthrough</li>
+          <li>Bottleneck identification</li>
+          <li>Quick-win opportunity map</li>
+          <li>Paid next step recommendation</li>
+        </ul>
+        <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-ghost" style="width:100%;justify-content:center">Book Now →</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most Common Entry</div>
+        <div class="pricing-tier">Build</div>
+        <h3>System Build</h3>
+        <div class="pricing-amount">TT$17k – TT$200k</div>
+        <div class="pricing-divider"></div>
+        <p class="pricing-desc">Full workflow architecture, integration build, operational dashboards, and a compliance-ready execution layer — with a 30-day KPI delivery plan.</p>
+        <ul class="pricing-features">
+          <li>Workflow architecture + integrations</li>
+          <li>Operational dashboards + controls</li>
+          <li>Compliance-ready execution layer</li>
+          <li>30-day measurable KPI target</li>
+          <li>Dedicated build team</li>
+        </ul>
+        <a href="mailto:sales@manalabs8.com?subject=System%20Build%20Inquiry" class="btn btn-primary" style="width:100%;justify-content:center">Start Build →</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Scale</div>
+        <h3>Monthly Retainer</h3>
+        <div class="pricing-amount">TT$800 – TT$28k / month</div>
+        <div class="pricing-divider"></div>
+        <p class="pricing-desc">Ongoing monitoring, optimization sprints, and change control. Your automation keeps delivering as your business evolves — without internal overhead.</p>
+        <ul class="pricing-features">
+          <li>Continuous optimization sprints</li>
+          <li>Monitoring, alerts, change control</li>
+          <li>Revenue and efficiency improvement cycles</li>
+          <li>Dedicated operational contact</li>
+          <li>Monthly KPI reporting</li>
+        </ul>
+        <a href="mailto:sales@manalabs8.com?subject=Retainer%20Inquiry" class="btn btn-ghost" style="width:100%;justify-content:center">Enquire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="cta-block">
+    <div class="eyebrow" style="justify-content:center">Next Step</div>
+    <h2>Ready to Replace<br>Chaos With<br><span>Operational Control?</span></h2>
+    <p>If your operation is leaking time, revenue, or control — we'll find exactly where, and tell you what to fix first. <strong>No pitch. No pressure. Just clarity.</strong></p>
+    <div class="cta-cards">
+      <div class="cta-card">
+        <div class="cta-card-label">MSME Operators</div>
+        <h4>Scaling a storefront or service business?</h4>
+        <p>Payments, WhatsApp commerce, and lead automation. We'll find the fastest path from where you are to a system that sells while you sleep.</p>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-label">Enterprise Operations</div>
+        <h4>Managing complex operations or infrastructure?</h4>
+        <p>Compliance, approvals, trade documentation, and dashboards. We engineer the control layer your leadership needs to make confident decisions.</p>
+      </div>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-primary" style="font-size:12px;padding:16px 32px">Book Free Discovery Call →</a>
+      <a href="mailto:sales@manalabs8.com?subject=Free%20Diagnostic%20Request" class="btn btn-ghost" style="font-size:12px;padding:16px 32px">Request Free Diagnostic</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 -6 100 112">
+        <path fill="#00c8aa" fill-rule="evenodd" d="M50 106 A28 28 0 1 1 50 50 A28 28 0 1 1 50 106 M50 97.5 A19.5 19.5 0 1 0 50 58.5 A19.5 19.5 0 1 0 50 97.5 M50 50 A28 28 0 1 1 50 -6 A28 28 0 1 1 50 50 M50 41.5 A19.5 19.5 0 1 0 50 2.5 A19.5 19.5 0 1 0 50 41.5 M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z"/>
+      </svg>
+      <div class="footer-brand-text">MANA LABS <span>8</span></div>
+    </div>
+    <div class="footer-copy">AI Operating Systems for Caribbean Business · Trinidad & Tobago</div>
+    <div class="footer-right">sales@manalabs8.com</div>
+  </div>
+</footer>
 </body>
 </html>
