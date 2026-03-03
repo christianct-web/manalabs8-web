@@ -79,6 +79,12 @@
     .track-card { background: var(--cloud); border-radius: 16px; padding: 28px; box-shadow: 0 14px 36px rgba(11,18,32,0.07); border: 1px solid rgba(11,18,32,0.05); }
     .track-card h3 { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
     .track-card p { color: var(--slate); font-size: 0.95rem; }
+    .icon-grid { background: var(--white); padding: 60px 0; }
+    .icon-grid .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; align-items: center; }
+    .icon-grid img { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(11,18,32,0.15); }
+    .icon-grid .text { color: var(--midnight); }
+    .icon-grid .text h3 { font-size: 1.9rem; margin-bottom: 14px; }
+    .icon-grid .text p { color: var(--slate); font-size: 1rem; }
     .visual-highlight { background: var(--white); padding: 80px 0; }
     .visual-highlight .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; align-items: center; }
     .visual-highlight img { width: 100%; border-radius: 20px; box-shadow: 0 20px 45px rgba(11,18,32,0.15); }
@@ -281,6 +287,18 @@
           <h3>ICT & Cybersecurity Governance</h3>
           <p>Allowlists, sandboxing, auditing, and policy controls that protect every deployed skill—risk-firewalling the entire portfolio for enterprise buyers.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="icon-grid">
+    <div class="container">
+      <div class="text">
+        <h3>Modular automation building blocks</h3>
+        <p>Automation Bots, Payments routing, Dashboards, Compliance shields, and Optimization arrows are ready as reusable skill packs. Plug them into any of the tracks above to tailor the experience.</p>
+      </div>
+      <div class="icon-gallery">
+        <img src="assets/generated/track-icons.jpg" alt="Automation icon set" />
       </div>
     </div>
   </section>
