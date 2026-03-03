@@ -37,8 +37,9 @@
     nav .nav-links a:hover { color: var(--midnight); }
     nav .cta-btn { background: var(--midnight); color: var(--white); padding: 12px 26px; border-radius: 10px; text-decoration: none; transition: all .2s; font-weight: 600; }
     nav .cta-btn:hover { background: var(--cyan); color: var(--midnight); }
-    .hero { padding: 120px 0 90px; text-align: center; background: linear-gradient(180deg, var(--cloud) 0%, var(--white) 100%); }
-    .hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+    .hero { padding: 120px 0 90px; text-align: center; background: linear-gradient(180deg, rgba(248,250,252,0.95) 0%, rgba(255,255,255,0.75) 60%, rgba(255,255,255,0.9) 100%), url('assets/generated/hero-control-room.jpg'); background-size: cover; background-position: center top; position: relative; }
+    .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(34,211,238,0.25), transparent 45%); pointer-events: none; }
+    .hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; position: relative; z-index: 1; }
     .hero h1 span { color: var(--cyan); }
     .hero .tagline { font-size: 1.15rem; color: var(--slate); margin-bottom: 18px; font-weight: 600; }
     .hero .subheadline { font-size: 1.05rem; color: var(--slate); max-width: 700px; margin: 0 auto 34px; }
@@ -73,6 +74,12 @@
     .track-card { background: var(--cloud); border-radius: 16px; padding: 28px; box-shadow: 0 14px 36px rgba(11,18,32,0.07); border: 1px solid rgba(11,18,32,0.05); }
     .track-card h3 { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
     .track-card p { color: var(--slate); font-size: 0.95rem; }
+    .visual-highlight { background: var(--white); padding: 80px 0; }
+    .visual-highlight .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; align-items: center; }
+    .visual-highlight img { width: 100%; border-radius: 20px; box-shadow: 0 20px 45px rgba(11,18,32,0.15); }
+    .visual-highlight .text { color: var(--midnight); }
+    .visual-highlight .text h3 { font-size: 1.8rem; margin-bottom: 14px; }
+    .visual-highlight .text p { color: var(--slate); font-size: 1rem; }
     .proof-card .metric { font-family: 'Sora', sans-serif; font-size: 3rem; font-weight: 800; color: var(--midnight); margin-bottom: 8px; }
     .proof-card .metric span { color: var(--cyan); }
     .proof-card .label { font-weight: 600; color: var(--slate); }
@@ -219,6 +226,16 @@
           <p>Ongoing monitoring, updates, and controls for TT$3k–TT$25k/month so automation keeps delivering while you focus on growth.</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="visual-highlight">
+    <div class="container">
+      <div class="text">
+        <h3>Why the workflow matters</h3>
+        <p>Swipe left-to-right from document inputs through AI processing to payments, approvals, and compliance—every step is orchestrated so finance, ops, and leadership stay synchronized.</p>
+      </div>
+      <img src="assets/generated/services-workflow.jpg" alt="Mana Labs 8 automation workflow" />
     </div>
   </section>
 
