@@ -888,7 +888,7 @@ function closeModal(){document.getElementById('overlay').classList.remove('open'
 function overlayClick(e){if(e.target===document.getElementById('overlay'))closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 function setUrg(btn){document.querySelectorAll('.ub').forEach(b=>b.classList.remove('on'));btn.classList.add('on');urgVal=btn.dataset.v;document.getElementById('urg').value=urgVal;document.getElementById('urg-e').classList.remove('show');}
-const rules={fn:v=>v.trim().length>0,ln:v=>v.trim().length>0,em:v=>/^[^\\s@]+@[^\\s@]+\.[^\\s@]+$/.test(v.trim()),co:v=>v.trim().length>0,sc:v=>v!=='',pr:v=>v.trim().length>=10};
+const rules={fn:v=>v.trim().length>0,ln:v=>v.trim().length>0,em:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),co:v=>v.trim().length>0,sc:v=>v!=='',pr:v=>v.trim().length>=10};
 function setErr(id,show){const el=document.getElementById(id);const er=document.getElementById(id+'-e');if(el)el.classList.toggle('err',show);if(er)er.classList.toggle('show',show);}
 function clearErrs(){Object.keys(rules).forEach(id=>setErr(id,false));}
 function validate(){let ok=true;for(const[id,test]of Object.entries(rules)){const el=document.getElementById(id);const pass=el&&test(el.value);setErr(id,!pass);if(!pass)ok=false;}if(!urgVal){document.getElementById('urg-e').classList.add('show');ok=false;}return ok;}
