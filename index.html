@@ -12,6 +12,10 @@
   --blue:#1a6bff; --fog:#8fa3bb; --fog-dim:#4a617a;
   --white:#eef3fa; --grid:rgba(0,200,170,0.045);
   --border:rgba(0,200,170,0.13); --border2:rgba(255,255,255,0.06);
+  --panel:#111a18; --panel2:#162320; --panel3:#1c2e2a;
+  --amber:#e8a325; --amber-dim:rgba(232,163,37,0.1);
+  --teal-glow:rgba(0,200,170,0.12); --teal-line:rgba(0,200,170,0.18);
+  --faint:rgba(232,237,233,0.05); --error:#e05252;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -172,6 +176,110 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
   .nav-inner{flex-direction:column;align-items:flex-start;height:auto;padding:12px 16px;gap:10px}
   .btn-primary{width:100%;text-align:center}
 }
+
+.page{position:relative;z-index:1}
+.section{max-width:1100px;margin:0 auto;padding:5rem 2rem}
+.section + .section{border-top:1px solid var(--border)}
+.section-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.section-eyebrow::before{content:'';width:36px;height:1px;background:var(--teal-line)}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);letter-spacing:.04em;line-height:1;color:var(--white);margin-bottom:.75rem}
+.section-title span{color:var(--teal)}
+.section-sub{font-size:.95rem;color:var(--fog);line-height:1.65;max-width:600px;margin-bottom:3rem}
+
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--teal-line);border:1px solid var(--teal-line)}
+.pain-card{background:var(--panel);padding:1.75rem;display:flex;flex-direction:column;gap:.75rem;position:relative;transition:background .2s}
+.pain-card:hover{background:var(--panel2)}
+.pain-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--teal);transform:scaleY(0);transform-origin:bottom;transition:transform .25s ease}
+.pain-card:hover::before{transform:scaleY(1)}
+.pain-icon{font-size:1.5rem}
+.pain-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:.4rem}
+.pain-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--white);line-height:1.1}
+.pain-body{font-size:.85rem;color:var(--fog);line-height:1.6;flex:1}
+.pain-cta{display:inline-flex;align-items:center;gap:.45rem;margin-top:.5rem;background:none;border:1px solid var(--teal-line);color:var(--teal);font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .9rem;border-radius:2px;cursor:pointer;transition:all .18s;width:fit-content}
+.pain-cta:hover{background:var(--teal-glow);border-color:var(--teal);color:var(--white)}
+.pain-cta .arrow{transition:transform .18s}
+.pain-cta:hover .arrow{transform:translateX(3px)}
+
+.tracks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.track-card{background:var(--panel);border:1px solid var(--teal-line);border-radius:4px;padding:1.75rem;display:flex;flex-direction:column;gap:.75rem;transition:border-color .2s,background .2s,transform .2s;position:relative}
+.track-card:hover{border-color:var(--teal);background:var(--panel2);transform:translateY(-2px)}
+.track-card::after{content:'';position:absolute;top:0;right:0;width:40px;height:40px;background:linear-gradient(225deg,var(--teal-glow) 0%,transparent 60%);pointer-events:none}
+.track-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+.track-icon{font-size:1.4rem}
+.track-tags{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:flex-end}
+.tag{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal-line);padding:.2rem .45rem;border-radius:2px}
+.track-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;color:var(--white);line-height:1.1}
+.track-body{font-size:.84rem;color:var(--fog);line-height:1.6;flex:1}
+.track-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:.5rem;background:var(--amber-dim);border:1px solid rgba(232,163,37,.28);color:var(--amber);font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1rem;border-radius:2px;cursor:pointer;transition:all .18s;width:fit-content}
+.track-cta:hover{background:rgba(232,163,37,.18);border-color:var(--amber);color:var(--white)}
+.track-cta .arrow{transition:transform .18s}
+.track-cta:hover .arrow{transform:translateX(3px)}
+
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(7,14,28,.95);backdrop-filter:blur(10px) saturate(.7);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--panel);border:1px solid var(--teal-line);width:100%;max-width:620px;max-height:92vh;overflow-y:auto;border-radius:4px;transform:translateY(18px) scale(.98);transition:transform .35s cubic-bezier(.16,1,.3,1);}
+.overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-topbar{height:3px;background:linear-gradient(90deg,var(--teal-dim),var(--teal),var(--teal-dim));position:relative;overflow:hidden}
+.modal-topbar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(13,158,133,.7) 50%,transparent 100%);animation:sweep 3s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.modal-context{background:var(--panel2);border-bottom:1px solid var(--teal-line);padding:.9rem 2rem;display:flex;align-items:center;gap:.75rem}
+.ctx-text{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);line-height:1.4}
+.ctx-text strong{display:block;color:var(--white);font-size:.65rem;letter-spacing:.08em}
+.modal-header{padding:1.5rem 2rem 1.25rem;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
+.logo-lockup{display:flex;align-items:center;gap:.7rem;margin-bottom:1.1rem}
+.logo-name{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.1em;color:var(--white)}
+.logo-sub{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.18em;color:var(--teal);text-transform:uppercase;margin-top:.2rem}
+.modal-type-tag{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.4rem;margin-bottom:.45rem}
+.modal-type-tag::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+.modal-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,3.5vw,2rem);letter-spacing:.04em;line-height:1.05;color:var(--white)}
+.modal-heading span{color:var(--teal)}
+.modal-close{width:30px;height:30px;background:transparent;border:1px solid rgba(232,237,233,.12);color:var(--fog);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;border-radius:2px;transition:all .18s}
+.modal-close:hover{border-color:var(--teal);color:var(--teal)}
+.modal-body{padding:1.5rem 2rem 2rem}
+.fsec{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.75rem;margin:1.4rem 0 .9rem}
+.fsec::after{content:'';flex:1;height:1px;background:var(--teal-line)}
+.fgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem 1.2rem}
+.fg{display:flex;flex-direction:column;gap:.32rem}
+.fg.full{grid-column:1/-1}
+label{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fog-dim)}
+label .req{color:var(--amber);margin-left:2px}
+input,select,textarea{background:var(--panel2);border:1px solid rgba(13,158,133,.18);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.87rem;padding:.68rem .85rem;width:100%;outline:none;border-radius:2px;transition:border-color .18s,box-shadow .18s;-webkit-appearance:none}
+input::placeholder,textarea::placeholder{color:rgba(232,237,233,.18);font-size:.8rem}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);background:rgba(13,158,133,.05);box-shadow:0 0 0 3px rgba(13,158,133,.08)}
+input.err,select.err,textarea.err{border-color:var(--error);box-shadow:0 0 0 3px rgba(224,82,82,.07)}
+.em{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--error);display:none;letter-spacing:.04em}
+.em.show{display:block}
+select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230d9e85' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .85rem center;padding-right:2.2rem}
+textarea{resize:vertical;min-height:85px;line-height:1.6}
+.urg-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.ub{padding:.52rem .2rem;background:var(--panel2);border:1px solid rgba(13,158,133,.18);color:var(--fog);font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-align:center;line-height:1.4;border-radius:2px;transition:all .18s}
+.ub:hover{border-color:var(--teal);color:var(--white)}
+.ub.on{background:rgba(13,158,133,.13);border-color:var(--teal);color:var(--teal)}
+.trust{display:flex;flex-wrap:wrap;gap:.8rem 1.4rem;padding:1rem 0 0;border-top:1px solid var(--faint);margin-top:1.4rem}
+.ti{display:flex;align-items:center;gap:.4rem;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.08em;color:var(--fog);text-transform:uppercase}
+.td{width:5px;height:5px;background:var(--teal);border-radius:50%}
+.submit-wrap{margin-top:1.4rem}
+.btn-sub{width:100%;background:var(--teal);color:var(--navy);border:none;padding:.95rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.87rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;gap:.6rem;position:relative;overflow:hidden;transition:all .2s}
+.btn-sub::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 60%);pointer-events:none}
+.btn-sub:hover{background:#0fb898;transform:translateY(-1px);box-shadow:0 8px 28px rgba(13,158,133,.4)}
+.btn-sub:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-sub .sp{width:15px;height:15px;border:2px solid rgba(8,12,11,.25);border-top-color:var(--navy);border-radius:50%;animation:spin .65s linear infinite;display:none}
+.btn-sub.loading .sp{display:block}
+.btn-sub.loading .bt{opacity:0;position:absolute}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sub-note{text-align:center;margin-top:.7rem;font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.1em;color:var(--fog);text-transform:uppercase}
+.success-view{display:none;padding:2.5rem 2rem 2.2rem;text-align:center}
+.s-mark{width:58px;height:58px;background:rgba(13,158,133,.12);border:1px solid var(--teal);border-radius:50%;margin:0 auto 1.4rem;display:flex;align-items:center;justify-content:center;animation:popIn .4s cubic-bezier(.16,1,.3,1)}
+@keyframes popIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+.s-tag{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.05em;color:var(--white);margin-bottom:.7rem}
+.s-body{font-size:.87rem;color:var(--fog);line-height:1.65;max-width:360px;margin:0 auto 1.5rem}
+.s-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-bottom:1.75rem}
+.sp2{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.12em;color:var(--teal);border:1px solid var(--teal-line);background:var(--teal-glow);padding:.28rem .65rem;text-transform:uppercase;border-radius:2px}
+.btn-ghost{background:transparent;color:var(--fog);border:1px solid rgba(232,237,233,.18);padding:.7rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+@media(max-width:720px){.section{padding:3.5rem 1.25rem}.fgrid{grid-template-columns:1fr}.fg.full{grid-column:1}.urg-row{grid-template-columns:repeat(2,1fr)}.modal-header,.modal-body{padding-left:1.25rem;padding-right:1.25rem}.modal-context{padding-left:1.25rem;padding-right:1.25rem}.success-view{padding:2rem 1.25rem}}
 </style>
 </head>
 <body>
@@ -190,7 +298,7 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
       <li><a href="#proof">Proof</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
-    <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-primary">Book Discovery Call →</a>
+    <button type="button" class="btn btn-primary" onclick="openModal({type:'pain',icon:'📞',label:'Discovery Call',sector:'retail',prefill:'We need to map the operational gaps and book a discovery call.'})">Book Discovery Call →</button>
   </div>
 </nav>
 <section id="hero">
@@ -214,8 +322,8 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
         From growing storefront to complex enterprise operation.
       </p>
       <div class="hero-cta fade-up-3">
-        <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-primary">Book Free Discovery Call →</a>
-        <a href="#gaps" class="btn btn-ghost">See What We Fix</a>
+        <button type="button" class="btn btn-primary" onclick="openModal({type:'pain',icon:'📞',label:'Discovery Call',sector:'retail',prefill:'We need to map the operational gaps and schedule a discovery call.'})">Book Free Discovery Call →</button>
+        <button type="button" class="btn btn-ghost" onclick="openModal({type:'diagnostic',icon:'🧬',label:'Operational Diagnostic',sector:'retail',prefill:'I would like a free diagnostic on our operations.'})">Request Diagnostic</button>
       </div>
     </div>
     <div class="hero-panel fade-up-4">
@@ -266,40 +374,53 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
   </div>
 </section>
 <section id="gaps">
-  <div class="container">
-    <div class="eyebrow">The Problem</div>
-    <h2>Most Operations Are Held Together<br>by People Compensating<br><span style="color:var(--teal)">for Broken Processes.</span></h2>
-    <p class="section-intro">That's expensive, invisible, and <strong>entirely fixable.</strong> The same four bottlenecks appear in almost every Caribbean operation we've walked into — MSME or enterprise.</p>
-    <div class="gaps-grid">
-      <div class="gap-card">
-        <div class="gap-icon">💳</div>
-        <h3>Payments Gridlock</h3>
-        <p>Reconciliation done by hand. Cash sitting idle. Finance teams always two days behind. Discrepancies caught too late to fix cleanly. This isn't a finance problem — it's a systems problem.</p>
+  <div class="section">
+    <div class="section-eyebrow">The Problem</div>
+    <h2 class="section-title">Most Operations Are Held Together<br><span>by People Compensating</span> for Broken Processes.</h2>
+    <p class="section-sub">That's expensive, invisible, and <strong>entirely fixable.</strong> The same bottlenecks appear in almost every Caribbean operation we've walked into — MSME or enterprise.</p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">💳</div>
+        <div class="pain-label">Payments</div>
+        <div class="pain-title">Payments Gridlock</div>
+        <p class="pain-body">Reconciliation done by hand. Cash sitting idle. Finance teams always two days behind. Discrepancies caught too late to fix cleanly. This isn't a finance problem — it's a systems problem.</p>
+        <button class="pain-cta" onclick="openModal({type:'pain',icon:'💳',label:'Payments Gridlock',sector:'retail',prefill:'Our payments reconciliation is done manually — cash sitting idle and finance always running 2 days behind.'})">Fix This <span class="arrow">→</span></button>
       </div>
-      <div class="gap-card">
-        <div class="gap-icon">📱</div>
-        <h3>WhatsApp Revenue Leak</h3>
-        <p>You're answering 50 messages a day. Three turn into sales. The rest disappear in the thread. No follow-up, no CRM capture, no checkout link. The customers were ready. The system wasn't.</p>
+      <div class="pain-card">
+        <div class="pain-icon">📱</div>
+        <div class="pain-label">Revenue Leak</div>
+        <div class="pain-title">WhatsApp Revenue Leak</div>
+        <p class="pain-body">You're answering 50 messages a day. Three turn into sales. The rest disappear in the thread. No follow-up, no CRM capture, no checkout link. The customers were ready. The system wasn't.</p>
+        <button class="pain-cta" onclick="openModal({type:'pain',icon:'📱',label:'WhatsApp Revenue Leak',sector:'retail',prefill:'We handle 50+ WhatsApp inquiries daily but less than 10% convert. No CRM, no follow-up system, messages go cold.'})">Fix This <span class="arrow">→</span></button>
       </div>
-      <div class="gap-card">
-        <div class="gap-icon">⏳</div>
-        <h3>Approval Bottlenecks</h3>
-        <p>Permits, sign-offs, compliance submissions — all waiting on one inbox. Every delay is a cost. Enterprise operations can't afford leaders spending executive hours chasing paperwork.</p>
+      <div class="pain-card">
+        <div class="pain-icon">⏳</div>
+        <div class="pain-label">Approvals</div>
+        <div class="pain-title">Approval Bottlenecks</div>
+        <p class="pain-body">Permits, sign-offs, compliance submissions — all waiting on one inbox. Every delay is a cost. Enterprise operations can't afford leaders spending executive hours chasing paperwork.</p>
+        <button class="pain-cta" onclick="openModal({type:'pain',icon:'⏳',label:'Approval Bottlenecks',sector:'energy',prefill:'Permits and compliance sign-offs are all bottlenecked in one inbox. Leadership spends hours chasing approvals instead of running the business.'})">Fix This <span class="arrow">→</span></button>
       </div>
-      <div class="gap-card">
-        <div class="gap-icon">📊</div>
-        <h3>Zero Operational Visibility</h3>
-        <p>Leadership can't see what's moving, what's stalled, or what's costing. Decisions made on gut feel and last week's report. Real-time control requires engineered infrastructure — not more dashboards.</p>
+      <div class="pain-card">
+        <div class="pain-icon">📊</div>
+        <div class="pain-label">Visibility</div>
+        <div class="pain-title">Zero Operational Visibility</div>
+        <p class="pain-body">Leadership can't see what's moving, what's stalled, or what's costing. Decisions made on gut feel and last week's report. Real-time control requires engineered infrastructure — not more dashboards.</p>
+        <button class="pain-cta" onclick="openModal({type:'pain',icon:'📊',label:'Zero Operational Visibility',sector:'other',prefill:'We make decisions on outdated reports. No real-time view of what\'s moving, stalled, or costing us money.'})">Fix This <span class="arrow">→</span></button>
       </div>
-      <div class="gap-card">
-        <div class="gap-icon">📄</div>
-        <h3>Manual Trade Documentation</h3>
-        <p>Documents captured by hand. Validation done manually. Deadlines missed because no one set an alert. Trade operations running on email threads and spreadsheets is a liability, not a workflow.</p>
+      <div class="pain-card">
+        <div class="pain-icon">📄</div>
+        <div class="pain-label">Trade Docs</div>
+        <div class="pain-title">Manual Trade Documentation</div>
+        <p class="pain-body">Documents captured by hand. Validation done manually. Deadlines missed because no one set an alert. Trade operations running on email threads and spreadsheets is a liability, not a workflow.</p>
+        <button class="pain-cta" onclick="openModal({type:'pain',icon:'📄',label:'Manual Trade Documentation',sector:'logistics',prefill:'Trade documentation is all done manually — spreadsheets and email threads. We miss deadlines because there\'s no automated alerting.'})">Fix This <span class="arrow">→</span></button>
       </div>
-      <div class="gap-card">
-        <div class="gap-icon">🔁</div>
-        <h3>No Follow-Up Automation</h3>
-        <p>Leads come in and go cold. Quotes sent without triggers. Revenue doesn't disappear at the sale — it disappears in the silence after the first contact. That silence is a system gap.</p>
+      <div class="pain-card">
+        <div class="pain-icon">🔁</div>
+        <div class="pain-label">Follow-Up</div>
+        <div class="pain-title">No Follow-Up Automation</div>
+        <p class="pain-body">Leads come in and go cold. Quotes sent without triggers. Revenue doesn't disappear at the sale — it disappears in the silence after the first contact. That silence is a system gap.</p>
+        <button class="pain-cta" onclick="openModal({type:'pain',icon:'🔁',label:'No Follow-Up Automation',sector:'retail',prefill:'Leads come in and go cold. Quotes are sent manually with no follow-up triggers. We lose revenue in the silence after first contact.'})">Fix This <span class="arrow">→</span></button>
       </div>
     </div>
   </div>
@@ -364,70 +485,97 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
           <li>Paid next step recommendation</li>
         </ul>
         <br>
-        <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-primary" style="width:100%;justify-content:center">Book Your Call →</a>
+        <button type="button" class="btn btn-primary" style="width:100%;justify-content:center" onclick="openModal({type:'pain',icon:'📞',label:'Discovery Call',sector:'retail',prefill:'I would like to start with a discovery call.'})">Book Your Call →</button>
       </div>
     </div>
   </div>
 </section>
 <section id="tracks">
-  <div class="container">
-    <div class="eyebrow">Operational Tracks</div>
-    <h2>One System.<br><span style="color:var(--teal)">Built For Your Sector.</span></h2>
-    <p class="section-intro">We focus on the operational tracks that <strong>move fastest for Caribbean businesses.</strong> Each track is a pre-engineered entry point — deployed standalone or combined into your full operating system.</p>
-    <div class="tracks-grid">
+  <div class="section">
+    <div class="section-eyebrow">Operational Tracks</div>
+    <h2 class="section-title">One System.<br><span>Built For Your Sector.</span></h2>
+    <p class="section-sub">Pre-engineered entry points — deployed standalone or combined into your full operating system. Each track moves <strong>fastest for Caribbean businesses.</strong></p>
+    <div class="track-grid">
       <div class="track-card">
-        <div class="track-card-icon">💳</div>
-        <h3>MSME Payments & Checkout</h3>
-        <p>Digital payment integration and agent-led reconciliation. Cash-heavy merchants accepting digital payments without the admin overhead.</p>
-        <div class="track-tag">MSME · Payments</div>
+        <div class="track-header">
+          <div class="track-icon">💳</div>
+          <div class="track-tags"><span class="tag">MSME</span><span class="tag">Payments</span></div>
+        </div>
+        <div class="track-title">MSME Payments &amp; Checkout</div>
+        <p class="track-body">Digital payment integration and agent-led reconciliation. Cash-heavy merchants accepting digital payments without the admin overhead.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'💳',label:'MSME Payments & Checkout',sector:'retail',prefill:'I want to integrate digital payments and automate reconciliation for our cash-heavy operation.'})">Get This Track <span class="arrow">→</span></button>
       </div>
       <div class="track-card">
-        <div class="track-card-icon">💬</div>
-        <h3>WhatsApp Commerce & Support</h3>
-        <p>Chat-to-checkout, catalog management, delivery tracking, and support automation. Turn conversations into closed sales without leaving the app your customers already use.</p>
-        <div class="track-tag">MSME · Commerce</div>
+        <div class="track-header">
+          <div class="track-icon">💬</div>
+          <div class="track-tags"><span class="tag">MSME</span><span class="tag">Commerce</span></div>
+        </div>
+        <div class="track-title">WhatsApp Commerce &amp; Support</div>
+        <p class="track-body">Chat-to-checkout, catalog management, delivery tracking, and support automation. Turn conversations into closed sales without leaving the app your customers already use.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'💬',label:'WhatsApp Commerce & Support',sector:'retail',prefill:'We want to automate WhatsApp — chat-to-checkout, CRM capture, and follow-up so conversations turn into closed sales.'})">Get This Track <span class="arrow">→</span></button>
       </div>
       <div class="track-card">
-        <div class="track-card-icon">📈</div>
-        <h3>Sales & Marketing Systems</h3>
-        <p>Automation stacks that capture leads, qualify with AI, sync to CRM, and serve marketing insights. Revenue doesn't leak in the follow-up when the system handles it.</p>
-        <div class="track-tag">MSME · Enterprise · Sales</div>
+        <div class="track-header">
+          <div class="track-icon">📈</div>
+          <div class="track-tags"><span class="tag">MSME</span><span class="tag">Enterprise</span><span class="tag">Sales</span></div>
+        </div>
+        <div class="track-title">Sales &amp; Marketing Systems</div>
+        <p class="track-body">Automation stacks that capture leads, qualify with AI, sync to CRM, and serve marketing insights. Revenue doesn't leak in the follow-up when the system handles it.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'📈',label:'Sales & Marketing Systems',sector:'retail',prefill:'We need a full sales automation stack — lead capture, AI qualification, CRM sync, and follow-up triggers.'})">Get This Track <span class="arrow">→</span></button>
       </div>
       <div class="track-card">
-        <div class="track-card-icon">⚡</div>
-        <h3>Energy & Industrial Ops</h3>
-        <p>Permit-to-work, incident reporting, approvals, and compliance analytics for energy workloads. Compliance triggers wired directly into operational dashboards.</p>
-        <div class="track-tag">Enterprise · Industrial</div>
+        <div class="track-header">
+          <div class="track-icon">⚡</div>
+          <div class="track-tags"><span class="tag">Enterprise</span><span class="tag">Industrial</span></div>
+        </div>
+        <div class="track-title">Energy &amp; Industrial Ops</div>
+        <p class="track-body">Permit-to-work, incident reporting, approvals, and compliance analytics for energy workloads. Compliance triggers wired directly into operational dashboards.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'⚡',label:'Energy & Industrial Ops',sector:'energy',prefill:'We need permit-to-work automation, compliance analytics, and approval workflows for our energy/industrial operation.'})">Get This Track <span class="arrow">→</span></button>
       </div>
       <div class="track-card">
-        <div class="track-card-icon">🚢</div>
-        <h3>Logistics & Customs</h3>
-        <p>Document automation, status tracking, and exception handling for ports, warehousing, and cross-border trade. Predict exceptions before delays become costs.</p>
-        <div class="track-tag">Enterprise · Trade</div>
+        <div class="track-header">
+          <div class="track-icon">🚢</div>
+          <div class="track-tags"><span class="tag">Enterprise</span><span class="tag">Trade</span></div>
+        </div>
+        <div class="track-title">Logistics &amp; Customs</div>
+        <p class="track-body">Document automation, status tracking, and exception handling for ports, warehousing, and cross-border trade. Predict exceptions before delays become costs.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'🚢',label:'Logistics & Customs',sector:'logistics',prefill:'We need document automation and real-time tracking for customs/logistics — currently everything is manual and we miss clearance windows.'})">Get This Track <span class="arrow">→</span></button>
       </div>
       <div class="track-card">
-        <div class="track-card-icon">🎉</div>
-        <h3>Carnival, Events & Tourism</h3>
-        <p>Band operations, CRM, messaging, and payments orchestration. Keep tourism spends on budget, communication on schedule, and customer experience consistent at scale.</p>
-        <div class="track-tag">MSME · Enterprise · Events</div>
+        <div class="track-header">
+          <div class="track-icon">🎉</div>
+          <div class="track-tags"><span class="tag">MSME</span><span class="tag">Enterprise</span><span class="tag">Events</span></div>
+        </div>
+        <div class="track-title">Carnival, Events &amp; Tourism</div>
+        <p class="track-body">Band operations, CRM, messaging, and payments orchestration. Keep tourism spends on budget, communication on schedule, and customer experience consistent at scale.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'🎉',label:'Carnival, Events & Tourism',sector:'events',prefill:'We run events/band operations and need CRM, messaging automation, and payment orchestration at scale.'})">Get This Track <span class="arrow">→</span></button>
       </div>
       <div class="track-card">
-        <div class="track-card-icon">🏥</div>
-        <h3>Healthcare & Wellness Ops</h3>
-        <p>Secure triage, scheduling, reminders, and intake workflows. Move patients faster while meeting confidentiality standards — without adding headcount.</p>
-        <div class="track-tag">Enterprise · Healthcare</div>
+        <div class="track-header">
+          <div class="track-icon">🏥</div>
+          <div class="track-tags"><span class="tag">Enterprise</span><span class="tag">Healthcare</span></div>
+        </div>
+        <div class="track-title">Healthcare &amp; Wellness Ops</div>
+        <p class="track-body">Secure triage, scheduling, reminders, and intake workflows. Move patients faster while meeting confidentiality standards — without adding headcount.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'🏥',label:'Healthcare & Wellness Ops',sector:'healthcare',prefill:'We need automated scheduling, intake workflows, and patient reminders — compliant with confidentiality standards, no added headcount.'})">Get This Track <span class="arrow">→</span></button>
       </div>
       <div class="track-card">
-        <div class="track-card-icon">🔒</div>
-        <h3>ICT & Cybersecurity Governance</h3>
-        <p>Allowlists, sandboxing, auditing, and policy controls protecting every deployed automation. Risk-firewalling your entire operational portfolio for enterprise buyers.</p>
-        <div class="track-tag">Enterprise · Governance</div>
+        <div class="track-header">
+          <div class="track-icon">🔒</div>
+          <div class="track-tags"><span class="tag">Enterprise</span><span class="tag">Governance</span></div>
+        </div>
+        <div class="track-title">ICT &amp; Cybersecurity Governance</div>
+        <p class="track-body">Allowlists, sandboxing, auditing, and policy controls protecting every deployed automation. Risk-firewalling your entire operational portfolio for enterprise buyers.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'🔒',label:'ICT & Cybersecurity Governance',sector:'ict',prefill:'We need to govern and risk-firewall our automation portfolio — allowlists, auditing, sandboxing, and policy controls.'})">Get This Track <span class="arrow">→</span></button>
       </div>
-      <div class="track-card" style="border-color:var(--border);background:rgba(0,200,170,.03)">
-        <div class="track-card-icon">🧩</div>
-        <h3>Modular Skill Packs</h3>
-        <p>Automation bots, payments routing, dashboards, compliance shields — available as reusable modules. Plug into any track or combine into a custom operating system.</p>
-        <div class="track-tag">All Sectors · Modular</div>
+      <div class="track-card">
+        <div class="track-header">
+          <div class="track-icon">🧩</div>
+          <div class="track-tags"><span class="tag">All Sectors</span><span class="tag">Modular</span></div>
+        </div>
+        <div class="track-title">Modular Skill Packs</div>
+        <p class="track-body">Automation bots, payments routing, dashboards, compliance shields — available as reusable modules. Plug into any track or combine into a custom operating system.</p>
+        <button class="track-cta" onclick="openModal({type:'track',icon:'🧩',label:'Modular Skill Packs',sector:'other',prefill:'We want to explore modular automation packs — specific bots, dashboards, or compliance modules we can plug into our existing setup.'})">Get This Track <span class="arrow">→</span></button>
       </div>
     </div>
   </div>
@@ -512,7 +660,7 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
           <li>Quick-win opportunity map</li>
           <li>Paid next step recommendation</li>
         </ul>
-        <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-ghost" style="width:100%;justify-content:center">Book Now →</a>
+        <button type="button" class="btn btn-ghost" style="width:100%;justify-content:center" onclick="openModal({type:'pain',icon:'📞',label:'Discovery Call',sector:'retail',prefill:'I want to book a discovery call to see where we can improve our operations.'})">Book Now →</button>
       </div>
       <div class="pricing-card featured">
         <div class="featured-badge">Most Common Entry</div>
@@ -528,7 +676,7 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
           <li>30-day measurable KPI target</li>
           <li>Dedicated build team</li>
         </ul>
-        <a href="mailto:sales@manalabs8.com?subject=System%20Build%20Inquiry" class="btn btn-primary" style="width:100%;justify-content:center">Start Build →</a>
+        <button type="button" class="btn btn-primary" style="width:100%;justify-content:center" onclick="openModal({type:'track',icon:'⚙️',label:'System Build',sector:'other',prefill:'We need full workflow architecture and integration support for a system build.'})">Start Build →</button>
       </div>
       <div class="pricing-card">
         <div class="pricing-tier">Scale</div>
@@ -543,7 +691,7 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
           <li>Dedicated operational contact</li>
           <li>Monthly KPI reporting</li>
         </ul>
-        <a href="mailto:sales@manalabs8.com?subject=Retainer%20Inquiry" class="btn btn-ghost" style="width:100%;justify-content:center">Enquire →</a>
+        <button type="button" class="btn btn-ghost" style="width:100%;justify-content:center" onclick="openModal({type:'track',icon:'🛡️',label:'Managed Automation Retainer',sector:'other',prefill:'We need a monthly retainer for monitoring and optimization.'})">Enquire →</button>
       </div>
     </div>
   </div>
@@ -566,8 +714,8 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
       </div>
     </div>
     <div class="cta-actions">
-      <a href="mailto:sales@manalabs8.com?subject=Book%20Free%20Discovery%20Call" class="btn btn-primary" style="font-size:12px;padding:16px 32px">Book Free Discovery Call →</a>
-      <a href="mailto:sales@manalabs8.com?subject=Free%20Diagnostic%20Request" class="btn btn-ghost" style="font-size:12px;padding:16px 32px">Request Free Diagnostic</a>
+      <button type="button" class="btn btn-primary" style="font-size:12px;padding:16px 32px" onclick="openModal({type:'pain',icon:'📞',label:'Discovery Call',sector:'retail',prefill:'I want to schedule a discovery call to understand your operations.'})">Book Free Discovery Call →</button>
+      <button type="button" class="btn btn-ghost" style="font-size:12px;padding:16px 32px" onclick="openModal({type:'diagnostic',icon:'🧬',label:'Operational Diagnostic',sector:'retail',prefill:'Please send me a free diagnostic for my operation.'})">Request Free Diagnostic</button>
     </div>
   </div>
 </section>
@@ -583,5 +731,173 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
     <div class="footer-right">sales@manalabs8.com</div>
   </div>
 </footer>
+
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+  <div class="modal">
+    <div class="modal-topbar"></div>
+    <div class="modal-context">
+      <div class="ctx-icon" id="ctxIcon">💳</div>
+      <div class="ctx-text">
+        <span id="ctxType">Enquiring about track</span>
+        <strong id="ctxLabel">MSME Payments & Checkout</strong>
+      </div>
+    </div>
+    <div class="modal-header">
+      <div>
+        <div class="logo-lockup">
+          <svg width="38" height="38" viewBox="0 -6 100 112" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#22D3EE" fill-rule="evenodd" d="M50 106 A28 28 0 1 1 50 50 A28 28 0 1 1 50 106 M50 97.5 A19.5 19.5 0 1 0 50 58.5 A19.5 19.5 0 1 0 50 97.5 M50 50 A28 28 0 1 1 50 -6 A28 28 0 1 1 50 50 M50 41.5 A19.5 19.5 0 1 0 50 2.5 A19.5 19.5 0 1 0 50 41.5 M20 0 L28.5 0 L28.5 61.8 L20 61.8 Z M71.5 0 L80 0 L80 61.8 L71.5 61.8 Z M28.5 61.8 L50 38.2 L45.75 33.95 L24.25 57.55 Z M50 38.2 L71.5 61.8 L75.75 57.55 L54.25 33.95 Z"/>
+          <div class="logo-name">MANA LABS 8</div>
+          <div class="logo-sub">AI Operating Systems · T&T</div>
+        </div>
+        <div class="modal-type-tag" id="modalTag">Free · 30-Minute Session</div>
+        <h2 class="modal-heading">Book Your <span id="headingAccent">Discovery Call</span></h2>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="formView">
+      <form id="ctaForm" novalidate>
+        <div class="fsec">Your Details</div>
+        <div class="fgrid">
+          <div class="fg">
+            <label for="fn">First Name <span class="req">*</span></label>
+            <input type="text" id="fn" placeholder="Marcus" autocomplete="given-name"/>
+            <span class="em" id="fn-e">Required</span>
+          </div>
+          <div class="fg">
+            <label for="ln">Last Name <span class="req">*</span></label>
+            <input type="text" id="ln" placeholder="Williams" autocomplete="family-name"/>
+            <span class="em" id="ln-e">Required</span>
+          </div>
+          <div class="fg">
+            <label for="em">Work Email <span class="req">*</span></label>
+            <input type="email" id="em" placeholder="you@company.com" autocomplete="email"/>
+            <span class="em" id="em-e">Valid email required</span>
+          </div>
+          <div class="fg">
+            <label for="wa">WhatsApp / Phone</label>
+            <input type="tel" id="wa" placeholder="+1 868 XXX XXXX" autocomplete="tel"/>
+          </div>
+          <div class="fg full">
+            <label for="co">Business / Organisation <span class="req">*</span></label>
+            <input type="text" id="co" placeholder="Your company name" autocomplete="organization"/>
+            <span class="em" id="co-e">Required</span>
+          </div>
+        </div>
+        <div class="fsec">Your Operation</div>
+        <div class="fgrid">
+          <div class="fg full">
+            <label for="sc">Primary Sector <span class="req">*</span></label>
+            <select id="sc">
+              <option value="" disabled selected>Select your sector...</option>
+              <option value="retail">Retail / MSME Storefront</option>
+              <option value="logistics">Logistics &amp; Customs / Trade</option>
+              <option value="energy">Energy &amp; Industrial</option>
+              <option value="healthcare">Healthcare &amp; Wellness</option>
+              <option value="events">Carnival, Events &amp; Tourism</option>
+              <option value="ict">ICT &amp; Cybersecurity</option>
+              <option value="finance">Finance &amp; Professional Services</option>
+              <option value="other">Other</option>
+            </select>
+            <span class="em" id="sc-e">Please select a sector</span>
+          </div>
+          <div class="fg full">
+            <label for="pr">What do you need fixed? <span class="req">*</span></label>
+            <textarea id="pr" placeholder="Describe what's slowing your operation..."></textarea>
+            <span class="em" id="pr-e">Please describe the issue (min 10 chars)</span>
+          </div>
+          <div class="fg full">
+            <label>Timeline <span class="req">*</span></label>
+            <div class="urg-row">
+              <button type="button" class="ub" data-v="exploring" onclick="setUrg(this)">Exploring</button>
+              <button type="button" class="ub" data-v="30days" onclick="setUrg(this)">Next 30 Days</button>
+              <button type="button" class="ub on" data-v="asap" onclick="setUrg(this)">ASAP</button>
+              <button type="button" class="ub" data-v="enterprise" onclick="setUrg(this)">Enterprise RFQ</button>
+            </div>
+            <input type="hidden" id="urg" value="asap"/>
+            <span class="em" id="urg-e">Please select a timeline</span>
+          </div>
+        </div>
+        <div class="trust">
+          <div class="ti"><div class="td"></div>No pitch, no pressure</div>
+          <div class="ti"><div class="td"></div>30 min · T&T-based team</div>
+          <div class="ti"><div class="td"></div>You leave with a bottleneck map</div>
+        </div>
+        <div class="submit-wrap">
+          <button type="submit" class="btn-sub" id="submitBtn">
+            <div class="sp"></div>
+            <span class="bt" id="btnTxt">Secure My Spot →</span>
+          </button>
+          <p class="sub-note">We respond within 1 business day · sales@manalabs8.com</p>
+        </div>
+      </form>
+    </div>
+    <div class="success-view" id="successView">
+      <div class="s-mark">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M4 11l5 5L18 6" stroke="#0d9e85" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="s-tag">Submission Confirmed</div>
+      <h3 class="s-title">YOU'RE IN THE SYSTEM.</h3>
+      <p class="s-body">Our team will reach out within <strong style="color:#e8ede9">1 business day</strong> to lock in your session. Check your WhatsApp and email — we'll confirm on both.</p>
+      <div class="s-pills">
+        <span class="sp2">✓ Bottleneck Audit</span>
+        <span class="sp2">✓ Quick-Win Map</span>
+        <span class="sp2">✓ Paid Next Step</span>
+        <span class="sp2">✓ No Obligation</span>
+      </div>
+      <button class="btn-ghost" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+<script>
+const SECTOR_MAP={retail:'retail',logistics:'logistics',energy:'energy',healthcare:'healthcare',events:'events',ict:'ict',finance:'finance',other:'other','':''};
+let urgVal='asap';
+let currentContext={};
+function openModal(ctx){
+  currentContext=ctx||{};
+  const typeLabel=ctx.type==='track'?'Enquiring about track':'Fixing bottleneck';
+  document.getElementById('ctxType').textContent=ctx.ctxType||typeLabel;
+  document.getElementById('ctxLabel').textContent=ctx.label||'Your operation';
+  document.getElementById('ctxIcon').textContent=ctx.icon||'💼';
+  const modalTag=document.getElementById('modalTag');
+  const headingAccent=document.getElementById('headingAccent');
+  const headingText=ctx.heading||'Discovery Call';
+  headingAccent.textContent=ctx.headingAccent||headingText;
+  modalTag.textContent=ctx.tag||'Free · 30-Minute Session';
+  document.getElementById('btnTxt').textContent=ctx.type==='track'?'Get This Track →':ctx.type==='diagnostic'?'Request Diagnostic →':'Fix This Now →';
+  const formView=document.getElementById('formView');
+  const successView=document.getElementById('successView');
+  formView.style.display='block';
+  successView.style.display='none';
+  const sc=document.getElementById('sc');
+  if(ctx.sector&&SECTOR_MAP[ctx.sector]){sc.value=ctx.sector;setErr('sc',false);}else{sc.value='';}
+  const pr=document.getElementById('pr');
+  pr.value=ctx.prefill||'';setErr('pr',false);
+  ['fn','ln','em','co'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('urg').value='asap';
+  urgVal='asap';
+  document.querySelectorAll('.ub').forEach(b=>b.classList.toggle('on',b.dataset.v==='asap'));
+  clearErrs();
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('fn').focus(),380);
+}
+function closeModal(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+function overlayClick(e){if(e.target===document.getElementById('overlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function setUrg(btn){document.querySelectorAll('.ub').forEach(b=>b.classList.remove('on'));btn.classList.add('on');urgVal=btn.dataset.v;document.getElementById('urg').value=urgVal;document.getElementById('urg-e').classList.remove('show');}
+const rules={fn:v=>v.trim().length>0,ln:v=>v.trim().length>0,em:v=>/^[^\\s@]+@[^\\s@]+\.[^\\s@]+$/.test(v.trim()),co:v=>v.trim().length>0,sc:v=>v!=='',pr:v=>v.trim().length>=10};
+function setErr(id,show){const el=document.getElementById(id);const er=document.getElementById(id+'-e');if(el)el.classList.toggle('err',show);if(er)er.classList.toggle('show',show);}
+function clearErrs(){Object.keys(rules).forEach(id=>setErr(id,false));}
+function validate(){let ok=true;for(const[id,test]of Object.entries(rules)){const el=document.getElementById(id);const pass=el&&test(el.value);setErr(id,!pass);if(!pass)ok=false;}if(!urgVal){document.getElementById('urg-e').classList.add('show');ok=false;}return ok;}
+['fn','ln','em','co','pr'].forEach(id=>{document.getElementById(id)?.addEventListener('input',()=>setErr(id,false));});document.getElementById('sc')?.addEventListener('change',()=>setErr('sc',false));
+document.getElementById('ctaForm').addEventListener('submit',async function(e){e.preventDefault();if(!validate())return;const btn=document.getElementById('submitBtn');btn.classList.add('loading');btn.disabled=true;const payload={firstName:document.getElementById('fn').value.trim(),lastName:document.getElementById('ln').value.trim(),email:document.getElementById('em').value.trim(),whatsapp:document.getElementById('wa').value.trim(),company:document.getElementById('co').value.trim(),sector:document.getElementById('sc').value,problem:document.getElementById('pr').value.trim(),urgency:urgVal,ctaType:currentContext.type||'general',ctaSource:currentContext.label||'',submittedAt:new Date().toISOString(),source:'manalabs8-website'};console.log('▸ Mana Labs 8 payload:',payload);// TODO: Replace this simulated delay with your n8n webhook or Formspree request.
+// Recommended: n8n webhook (you already use n8n)
+// const res=await fetch('https://YOUR-N8N/webhook/manalabs-cta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+await new Promise(r=>setTimeout(r,1600));
+btn.classList.remove('loading');btn.disabled=false;document.getElementById('formView').style.display='none';document.getElementById('successView').style.display='block';});
+</script>
 </body>
 </html>
