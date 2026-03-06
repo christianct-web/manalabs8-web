@@ -9,7 +9,7 @@
 :root {
   --navy:#070e1c; --deep:#0a1323; --card:#0d1829;
   --teal:#00c8aa; --teal-dim:#007f6d;
-  --blue:#1a6bff; --fog:#8fa3bb; --fog-dim:#4a617a;
+  --blue:#1a6bff; --fog:#b6c6d8; --fog-dim:#7b8fa5;
   --white:#eef3fa; --grid:rgba(0,200,170,0.045);
   --border:rgba(0,200,170,0.13); --border2:rgba(255,255,255,0.06);
   --panel:#111a18; --panel2:#162320; --panel3:#1c2e2a;
@@ -19,7 +19,7 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 section,nav,footer{position:relative;z-index:1}
 h1,h2,h3,.bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em;line-height:.95}
@@ -93,8 +93,8 @@ h1 .accent{color:var(--teal)}
 .gap-card:hover{background:#101f36}
 .gap-icon{width:36px;height:36px;border:1px solid var(--border);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:20px}
 .gap-card h3{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;letter-spacing:0;color:var(--white);margin-bottom:10px;line-height:1.3}
-.gap-card p{font-size:13px;color:var(--fog);line-height:1.65}
-.section-intro{font-size:15px;color:var(--fog);max-width:600px;margin:20px 0 60px;line-height:1.75}
+.gap-card p{font-size:14px;color:var(--fog);line-height:1.65}
+.section-intro{font-size:17px;color:var(--fog);max-width:600px;margin:20px 0 60px;line-height:1.75}
 .section-intro strong{color:var(--white);font-weight:500}
 #deliver{padding:100px 0;background:var(--deep);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
 .deliver-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -209,7 +209,7 @@ footer{padding:32px 0;border-top:1px solid var(--border2)}
 .track-tags{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:flex-end}
 .tag{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal-line);padding:.2rem .45rem;border-radius:2px}
 .track-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;color:var(--white);line-height:1.1}
-.track-body{font-size:.84rem;color:var(--fog);line-height:1.6;flex:1}
+.track-body{font-size:.95rem;color:var(--fog);line-height:1.6;flex:1}
 .track-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:.5rem;background:var(--amber-dim);border:1px solid rgba(232,163,37,.28);color:var(--amber);font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1rem;border-radius:2px;cursor:pointer;transition:all .18s;width:fit-content}
 .track-cta:hover{background:rgba(232,163,37,.18);border-color:var(--amber);color:var(--white)}
 .track-cta .arrow{transition:transform .18s}
@@ -280,6 +280,34 @@ textarea{resize:vertical;min-height:85px;line-height:1.6}
 .btn-ghost{background:transparent;color:var(--fog);border:1px solid rgba(232,237,233,.18);padding:.7rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s}
 .btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
 @media(max-width:720px){.section{padding:3.5rem 1.25rem}.fgrid{grid-template-columns:1fr}.fg.full{grid-column:1}.urg-row{grid-template-columns:repeat(2,1fr)}.modal-header,.modal-body{padding-left:1.25rem;padding-right:1.25rem}.modal-context{padding-left:1.25rem;padding-right:1.25rem}.success-view{padding:2rem 1.25rem}}
+
+/* readability + new sections */
+#stack .stk-sub,#demo .dm-sub,#pricing .price-sub,#faq .faq-sub{font-size:1rem;color:var(--fog);line-height:1.8}
+#stack .stk-title,#demo .dm-title,#pricing .price-title,#faq .faq-title{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;line-height:1}
+#stack .stk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+#stack .stk-card{background:var(--card);border:1px solid var(--border2);padding:14px;border-radius:4px;text-align:center}
+#stack .stk-card img{width:28px;height:28px;filter:grayscale(1) brightness(1.3) opacity(.75);transition:.2s}
+#stack .stk-card:hover img{filter:none}
+#stack .stk-name{font-size:12px;color:var(--white);margin-top:8px}
+#demo .dm-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+#demo .dm-phone,#demo .dm-dash{background:var(--card);border:1px solid var(--border2);border-radius:6px;padding:16px}
+#demo .dm-chat{display:flex;flex-direction:column;gap:8px;min-height:220px}
+#demo .b{font-size:14px;line-height:1.5;padding:8px 10px;border-radius:8px;max-width:90%}
+#demo .b.in{background:rgba(255,255,255,.04);color:var(--fog)}
+#demo .b.bot{background:rgba(0,200,170,.10);border:1px solid var(--border);color:var(--white)}
+#demo .dm-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#demo .dm-m{background:rgba(255,255,255,.02);border:1px solid var(--border2);padding:10px}
+#demo .dm-v{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--teal)}
+#pricing .price-intro{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-bottom:20px}
+#pricing .anchor-box{background:var(--card);border:1px solid var(--border2);padding:14px}
+#faq .faq-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:24px}
+#faq .faq-item2{background:var(--card);border:1px solid var(--border2);margin-bottom:8px}
+#faq .faq-q2{width:100%;background:none;border:none;color:var(--white);text-align:left;padding:14px 16px;font-size:16px;cursor:pointer}
+#faq .faq-a2{display:none;padding:0 16px 14px;color:var(--fog);font-size:15px;line-height:1.8}
+#faq .faq-item2.open .faq-a2{display:block}
+#faq .faq-tag{display:inline-block;margin-top:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);border:1px solid var(--border);padding:4px 8px}
+@media(max-width:900px){#stack .stk-grid{grid-template-columns:repeat(2,1fr)}#demo .dm-layout,#pricing .price-intro,#faq .faq-layout{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -373,6 +401,24 @@ textarea{resize:vertical;min-height:85px;line-height:1.6}
     </div>
   </div>
 </section>
+<section id="stack">
+  <div class="container">
+    <div class="eyebrow">The Stack</div>
+    <h2 class="stk-title">Enterprise-Grade Infrastructure</h2>
+    <p class="stk-sub">Official technologies we build with, run on, and integrate with.</p>
+    <div class="stk-grid">
+      <div class="stk-card"><img src="https://cdn.simpleicons.org/typescript" alt="TypeScript"><div class="stk-name">TypeScript</div></div>
+      <div class="stk-card"><img src="https://cdn.simpleicons.org/nodedotjs" alt="Node"><div class="stk-name">Node.js</div></div>
+      <div class="stk-card"><img src="https://cdn.simpleicons.org/python" alt="Python"><div class="stk-name">Python</div></div>
+      <div class="stk-card"><img src="https://cdn.simpleicons.org/react" alt="React"><div class="stk-name">React</div></div>
+      <div class="stk-card"><img src="https://cdn.simpleicons.org/amazonaws" alt="AWS"><div class="stk-name">AWS</div></div>
+      <div class="stk-card"><img src="https://cdn.simpleicons.org/cloudflare" alt="Cloudflare"><div class="stk-name">Cloudflare</div></div>
+      <div class="stk-card"><img src="https://cdn.simpleicons.org/supabase" alt="Supabase"><div class="stk-name">Supabase</div></div>
+      <div class="stk-card"><img src="https://cdn.simpleicons.org/n8n" alt="n8n"><div class="stk-name">n8n</div></div>
+    </div>
+  </div>
+</section>
+
 <section id="gaps">
   <div class="section">
     <div class="section-eyebrow">The Problem</div>
@@ -642,56 +688,61 @@ textarea{resize:vertical;min-height:85px;line-height:1.6}
     </div>
   </div>
 </section>
+
+<section id="demo">
+  <div class="container">
+    <div class="eyebrow">See It Working</div>
+    <h2 class="dm-title">From WhatsApp Message to Closed Sale</h2>
+    <p class="dm-sub">Live simulated flow + real-time ops metrics. Loops every 10 seconds.</p>
+    <div class="dm-layout">
+      <div class="dm-phone"><div class="dm-chat" id="demoChat">
+        <div class="b in">Hi, do you have the black sneakers in size 10?</div>
+        <div class="b bot">Yes, in stock. TT$485. Want checkout link?</div>
+        <div class="b in">Yes please.</div>
+        <div class="b bot">Checkout sent. Total TT$520. Payment logged ✅</div>
+      </div></div>
+      <div class="dm-dash">
+        <div class="dm-metrics">
+          <div class="dm-m"><div class="dm-v">27%</div><div>WhatsApp conversion rate</div></div>
+          <div class="dm-m"><div class="dm-v">-18h</div><div>Weekly admin recovered</div></div>
+          <div class="dm-m"><div class="dm-v">92%</div><div>Messages auto-resolved</div></div>
+          <div class="dm-m"><div class="dm-v">TT$0</div><div>Revenue lost to cold leads</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="pricing">
   <div class="container">
-    <div class="eyebrow">Offer Ladder</div>
-    <h2>Start Free. Validate Fast.<br><span style="color:var(--teal)">Scale With Certainty.</span></h2>
-    <p class="section-intro">No guesswork. Every engagement starts with a clear diagnostic and ends with <strong>measurable KPI outcomes</strong> — not vague promises.</p>
+    <div class="eyebrow">Pricing</div>
+    <h2 class="price-title">Start Free. Scale With Certainty.</h2>
+    <p class="price-sub">Most MSME operators start between TT$17k–$35k and see ROI fast from hours recovered and conversion gains.</p>
+    <div class="price-intro">
+      <div class="pricing-narrative">
+        <p class="section-intro">A typical operator losing 30+ admin hours/week is burning roughly TT$7,200/month at TT$60/hr before counting missed revenue from cold leads.</p>
+      </div>
+      <div class="anchor-box">
+        <div><strong>30h/week recovered</strong></div><div><strong>27% conversion</strong></div><div><strong>30-day KPI model</strong></div>
+      </div>
+    </div>
     <div class="pricing-grid">
-      <div class="pricing-card">
-        <div class="pricing-tier">Entry Point</div>
-        <h3>Free Discovery Call</h3>
-        <div class="pricing-amount">Free · 30 minutes</div>
-        <div class="pricing-divider"></div>
-        <p class="pricing-desc">Walk us through your operation. We'll identify where the system is costing you — and give you a clear next step, whether you engage us or not.</p>
-        <ul class="pricing-features">
-          <li>Current process walkthrough</li>
-          <li>Bottleneck identification</li>
-          <li>Quick-win opportunity map</li>
-          <li>Paid next step recommendation</li>
-        </ul>
-        <button type="button" class="btn btn-ghost" style="width:100%;justify-content:center" onclick="openModal({type:'pain',icon:'📞',label:'Discovery Call',sector:'retail',prefill:'I want to book a discovery call to see where we can improve our operations.'})">Book Now →</button>
-      </div>
-      <div class="pricing-card featured">
-        <div class="featured-badge">Most Common Entry</div>
-        <div class="pricing-tier">Build</div>
-        <h3>System Build</h3>
-        <div class="pricing-amount">TT$17k – TT$200k</div>
-        <div class="pricing-divider"></div>
-        <p class="pricing-desc">Full workflow architecture, integration build, operational dashboards, and a compliance-ready execution layer — with a 30-day KPI delivery plan.</p>
-        <ul class="pricing-features">
-          <li>Workflow architecture + integrations</li>
-          <li>Operational dashboards + controls</li>
-          <li>Compliance-ready execution layer</li>
-          <li>30-day measurable KPI target</li>
-          <li>Dedicated build team</li>
-        </ul>
-        <button type="button" class="btn btn-primary" style="width:100%;justify-content:center" onclick="openModal({type:'track',icon:'⚙️',label:'System Build',sector:'other',prefill:'We need full workflow architecture and integration support for a system build.'})">Start Build →</button>
-      </div>
-      <div class="pricing-card">
-        <div class="pricing-tier">Scale</div>
-        <h3>Monthly Retainer</h3>
-        <div class="pricing-amount">TT$800 – TT$28k / month</div>
-        <div class="pricing-divider"></div>
-        <p class="pricing-desc">Ongoing monitoring, optimization sprints, and change control. Your automation keeps delivering as your business evolves — without internal overhead.</p>
-        <ul class="pricing-features">
-          <li>Continuous optimization sprints</li>
-          <li>Monitoring, alerts, change control</li>
-          <li>Revenue and efficiency improvement cycles</li>
-          <li>Dedicated operational contact</li>
-          <li>Monthly KPI reporting</li>
-        </ul>
-        <button type="button" class="btn btn-ghost" style="width:100%;justify-content:center" onclick="openModal({type:'track',icon:'🛡️',label:'Managed Automation Retainer',sector:'other',prefill:'We need a monthly retainer for monitoring and optimization.'})">Enquire →</button>
+      <div class="pricing-card"><div class="pricing-tier">Entry</div><h3>Discovery Call</h3><div class="pricing-amount">Free · 30 mins</div><p class="pricing-desc">Plain-language plan and first bottleneck map.</p><button class="btn btn-ghost" style="width:100%" onclick="openModal({type:'pain',icon:'📞',label:'Discovery Call',sector:'retail',prefill:'I want a discovery call.'})">Book Now →</button></div>
+      <div class="pricing-card featured"><div class="featured-badge">Most Common Entry</div><div class="pricing-tier">Build</div><h3>System Build</h3><div class="pricing-amount">TT$17k – TT$200k</div><p class="pricing-desc">MSME usually TT$17k–$35k. Enterprise scales by integration depth.</p><button class="btn btn-primary" style="width:100%" onclick="openModal({type:'track',icon:'⚙️',label:'System Build',sector:'other',prefill:'We need a full system build.'})">Start Build →</button></div>
+      <div class="pricing-card"><div class="pricing-tier">Scale</div><h3>Monthly Retainer</h3><div class="pricing-amount">TT$800 – TT$28k/mo</div><p class="pricing-desc">MSME TT$800–$3k/mo. Enterprise TT$8k–$28k/mo.</p><button class="btn btn-ghost" style="width:100%" onclick="openModal({type:'track',icon:'🛡️',label:'Managed Automation Retainer',sector:'other',prefill:'We need monthly optimization support.'})">Enquire →</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div><div class="eyebrow">FAQ</div><h2 class="faq-title">Questions We Hear Every Time</h2><p class="faq-sub">Plain answers to common objections.</p></div>
+      <div>
+        <div class="faq-item2 open"><button class="faq-q2" onclick="toggleFaq2(this)">What if something breaks?</button><div class="faq-a2">We include hypercare and managed monitoring plans.<div class="faq-tag">Included support paths</div></div></div>
+        <div class="faq-item2"><button class="faq-q2" onclick="toggleFaq2(this)">Is this suitable for MSMEs?</button><div class="faq-a2">Yes. MSMEs are usually fastest ROI.<div class="faq-tag">MSME-ready</div></div></div>
+        <div class="faq-item2"><button class="faq-q2" onclick="toggleFaq2(this)">Do I need to change software?</button><div class="faq-a2">Usually no. We integrate your current stack.<div class="faq-tag">Integrates existing tools</div></div></div>
+        <div class="faq-item2"><button class="faq-q2" onclick="toggleFaq2(this)">How long does it take?</button><div class="faq-a2">Pilot 2–4 weeks, full build 4–12 weeks.<div class="faq-tag">Fast rollout</div></div></div>
+        <div class="faq-item2"><button class="faq-q2" onclick="toggleFaq2(this)">What makes you different?</button><div class="faq-a2">Caribbean-specific + KPI-accountable delivery.<div class="faq-tag">Outcome-focused</div></div></div>
       </div>
     </div>
   </div>
@@ -894,6 +945,8 @@ function clearErrs(){Object.keys(rules).forEach(id=>setErr(id,false));}
 function validate(){let ok=true;for(const[id,test]of Object.entries(rules)){const el=document.getElementById(id);const pass=el&&test(el.value);setErr(id,!pass);if(!pass)ok=false;}if(!urgVal){document.getElementById('urg-e').classList.add('show');ok=false;}return ok;}
 ['fn','ln','em','co','pr'].forEach(id=>{document.getElementById(id)?.addEventListener('input',()=>setErr(id,false));});document.getElementById('sc')?.addEventListener('change',()=>setErr('sc',false));
 document.getElementById('ctaForm').addEventListener('submit',async function(e){e.preventDefault();if(!validate())return;const btn=document.getElementById('submitBtn');btn.classList.add('loading');btn.disabled=true;const payload={firstName:document.getElementById('fn').value.trim(),lastName:document.getElementById('ln').value.trim(),email:document.getElementById('em').value.trim(),whatsapp:document.getElementById('wa').value.trim(),company:document.getElementById('co').value.trim(),sector:document.getElementById('sc').value,problem:document.getElementById('pr').value.trim(),urgency:urgVal,ctaType:currentContext.type||'general',ctaSource:currentContext.label||'',submittedAt:new Date().toISOString(),source:'manalabs8-website'};console.log('▸ Mana Labs 8 payload:',payload);try{const res=await fetch('https://manalabs.app.n8n.cloud/webhook/manalabs-cta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!res.ok)throw new Error('Webhook failed: '+res.status);}catch(err){console.error('Webhook error',err);alert('Something went wrong sending your request. Please try again.');btn.classList.remove('loading');btn.disabled=false;return;}btn.classList.remove('loading');btn.disabled=false;document.getElementById('formView').style.display='none';document.getElementById('successView').style.display='block';});
+function toggleFaq2(btn){const i=btn.parentElement;const open=i.classList.contains("open");document.querySelectorAll(".faq-item2").forEach(x=>x.classList.remove("open"));if(!open)i.classList.add("open");}
+setInterval(()=>{const c=document.getElementById("demoChat");if(!c)return;const n=c.firstElementChild;c.appendChild(n);},10000);
 </script>
 </body>
 </html>
