@@ -121,10 +121,8 @@ async function createHubSpotNote(contactId, { sector, urgency, problem, submitte
 }
 
 async function createHubSpotDealAndTask(contactId, { firstName, lastName, company, urgency }) {
-  const pipeline = process.env.HUBSPOT_PIPELINE_ID;
-  const stage = process.env.HUBSPOT_DEALSTAGE_ID;
-
-  if (!pipeline || !stage) return null;
+  const pipeline = process.env.HUBSPOT_PIPELINE_ID || 'default';
+  const stage = process.env.HUBSPOT_DEALSTAGE_ID || 'appointmentscheduled';
 
   const deal = await hubspotRequest('/crm/v3/objects/deals', {
     method: 'POST',
