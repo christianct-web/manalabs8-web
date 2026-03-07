@@ -2469,8 +2469,8 @@ footer {
   <div class="footer-bottom">
     <div class="footer-legal">© 2025 Mana Labs <span style="color:var(--teal)">8</span> Ltd · Trinidad &amp; Tobago · All rights reserved</div>
     <div class="footer-legal-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
     </div>
   </div>
 </footer>
@@ -2780,10 +2780,24 @@ function toggleFaq(el) {
   if (!isOpen) item.classList.add('open');
 }
 
+/* ─── ANALYTICS HELPERS ─── */
+function trackEvent(eventName, params = {}) {
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...params });
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+  } catch (e) {
+    console.warn('trackEvent failed:', e?.message || e);
+  }
+}
+
 /* ─── MODAL ─── */
 let urgVal = 'asap';
 
 function openModal(type) {
+  trackEvent('modal_open', { ctaType: type || 'unknown' });
   const tag  = document.getElementById('modalTag');
   const acc  = document.getElementById('headingAccent');
   const txt  = document.getElementById('btnTxt');
@@ -2970,6 +2984,11 @@ async function handleSubmit(e) {
     source:      'manalabs8-website'
   };
 
+  trackEvent('form_submit_attempt', {
+    sector: payload.sector || 'unknown',
+    urgency: payload.urgency || 'unknown'
+  });
+
   let resendOk = false;
   let n8nFired = false;
 
@@ -3018,9 +3037,19 @@ async function handleSubmit(e) {
   btn.disabled = false;
 
   if (resendOk) {
+    trackEvent('form_submit_success', {
+      sector: payload.sector || 'unknown',
+      urgency: payload.urgency || 'unknown',
+      resend: true,
+      n8n: n8nFired
+    });
     document.getElementById('formView').style.display    = 'none';
     document.getElementById('successView').style.display = 'block';
   } else {
+    trackEvent('form_submit_error', {
+      sector: payload.sector || 'unknown',
+      urgency: payload.urgency || 'unknown'
+    });
     const errBanner = document.getElementById('submitErrBanner');
     if (errBanner) {
       errBanner.style.display = 'block';
