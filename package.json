@@ -1,0 +1,17 @@
+{
+  "name": "manalabs8-website",
+  "version": "1.0.0",
+  "description": "Mana Labs 8 landing page with Resend email integration",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "resend": "^3.2.0"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.0"
+  }
+}
