@@ -21,6 +21,167 @@ function normalizeUrgency(urgency = '') {
   return { label: raw, css: 'urgency-asap' };
 }
 
+async function hubspotRequest(path, options = {}) {
+  const token = process.env.HUBSPOT_ACCESS_TOKEN;
+  if (!token) throw new Error('HUBSPOT_ACCESS_TOKEN missing');
+
+  const res = await fetch(`https://api.hubapi.com${path}`, {
+    ...options,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      ...(options.headers || {}),
+    },
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`HubSpot API ${res.status}: ${errText}`);
+  }
+
+  if (res.status === 204) return null;
+  return res.json();
+}
+
+async function upsertHubSpotContact({ firstName, lastName, email, whatsapp, company }) {
+  const createPayload = {
+    properties: {
+      email,
+      firstname: firstName,
+      lastname: lastName,
+      phone: whatsapp || '',
+      company: company || '',
+      lifecyclestage: 'lead',
+    },
+  };
+
+  try {
+    const created = await hubspotRequest('/crm/v3/objects/contacts', {
+      method: 'POST',
+      body: JSON.stringify(createPayload),
+    });
+    return created?.id;
+  } catch (err) {
+    if (!String(err.message).includes('409')) throw err;
+
+    const search = await hubspotRequest('/crm/v3/objects/contacts/search', {
+      method: 'POST',
+      body: JSON.stringify({
+        filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: email }] }],
+        limit: 1,
+        properties: ['email'],
+      }),
+    });
+
+    const contactId = search?.results?.[0]?.id;
+    if (!contactId) throw new Error('Contact exists but lookup failed');
+
+    await hubspotRequest(`/crm/v3/objects/contacts/${contactId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        properties: {
+          firstname: firstName,
+          lastname: lastName,
+          phone: whatsapp || '',
+          company: company || '',
+        },
+      }),
+    });
+
+    return contactId;
+  }
+}
+
+async function createHubSpotNote(contactId, { sector, urgency, problem, submittedLabel }) {
+  const body = [
+    `New website lead`,
+    `Sector: ${sector || 'not specified'}`,
+    `Urgency: ${urgency || 'asap'}`,
+    `Submitted: ${submittedLabel}`,
+    ``,
+    `Problem/Bottleneck:`,
+    `${problem || ''}`,
+  ].join('\n');
+
+  await hubspotRequest('/crm/v3/objects/notes', {
+    method: 'POST',
+    body: JSON.stringify({
+      properties: {
+        hs_timestamp: new Date().toISOString(),
+        hs_note_body: body,
+      },
+      associations: [
+        {
+          to: { id: contactId },
+          types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }],
+        },
+      ],
+    }),
+  });
+}
+
+async function createHubSpotDealAndTask(contactId, { firstName, lastName, company, urgency }) {
+  const pipeline = process.env.HUBSPOT_PIPELINE_ID;
+  const stage = process.env.HUBSPOT_DEALSTAGE_ID;
+
+  if (!pipeline || !stage) return null;
+
+  const deal = await hubspotRequest('/crm/v3/objects/deals', {
+    method: 'POST',
+    body: JSON.stringify({
+      properties: {
+        dealname: `${company || `${firstName} ${lastName}`} - Discovery Opportunity`,
+        pipeline,
+        dealstage: stage,
+      },
+      associations: [
+        {
+          to: { id: contactId },
+          types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }],
+        },
+      ],
+    }),
+  });
+
+  const due = Date.now() + 15 * 60 * 1000;
+
+  await hubspotRequest('/crm/v3/objects/tasks', {
+    method: 'POST',
+    body: JSON.stringify({
+      properties: {
+        hs_task_subject: `Follow up new lead (${urgency || 'asap'})`,
+        hs_task_body: 'Respond to this lead and attempt discovery booking.',
+        hs_timestamp: new Date(due).toISOString(),
+        hs_task_status: 'NOT_STARTED',
+      },
+      associations: [
+        {
+          to: { id: contactId },
+          types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 204 }],
+        },
+        {
+          to: { id: deal?.id },
+          types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 216 }],
+        },
+      ],
+    }),
+  });
+
+  return deal?.id;
+}
+
+async function pushToHubSpot(payload) {
+  if (!process.env.HUBSPOT_ACCESS_TOKEN) {
+    return { enabled: false };
+  }
+
+  const contactId = await upsertHubSpotContact(payload);
+  await createHubSpotNote(contactId, payload);
+  const dealId = await createHubSpotDealAndTask(contactId, payload);
+
+  return { enabled: true, contactId, dealId: dealId || null };
+}
+
 export default async function handler(req, res) {
   const allowedOrigin = 'https://manalabs8.com';
   const requestOrigin = req.headers.origin;
@@ -194,10 +355,28 @@ Reply to this email to contact ${firstName} directly.
       return res.status(400).json({ error: error.message || 'Failed to send email' });
     }
 
+    let hubspot = { enabled: false };
+    try {
+      hubspot = await pushToHubSpot({
+        firstName,
+        lastName,
+        email,
+        whatsapp,
+        company,
+        sector,
+        urgency: urgencyInfo.label,
+        problem,
+        submittedLabel,
+      });
+    } catch (hsErr) {
+      console.error('HubSpot sync failed (non-blocking):', hsErr?.message || hsErr);
+    }
+
     return res.status(200).json({
       success: true,
       emailId: data?.id,
       message: 'Email sent successfully',
+      hubspot,
     });
   } catch (error) {
     console.error('Unexpected error:', error);
